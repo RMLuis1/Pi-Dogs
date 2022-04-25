@@ -6,9 +6,9 @@ module.exports = (sequelize) => {
   sequelize.define(
     "dog",
     {
-      ID:{
-        type: DataTypes.UUID,
-        allowNull:false,
+      ID: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
       },
       name: {
@@ -28,10 +28,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      image:{
+      image: {
         type: DataTypes.TEXT,
-        allowNull: true
-      }
+        allowNull: true,
+      },
     },
     { timestamp: false }
   );
