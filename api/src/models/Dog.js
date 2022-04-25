@@ -28,6 +28,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      image:{
+        type: DataTypes.TEXT,
+        allowNull: true
+      }
     },
     { timestamp: false }
   );
