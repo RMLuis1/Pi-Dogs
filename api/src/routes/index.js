@@ -32,16 +32,30 @@ router.get("/dogs", async (req, res) => {
           },
         },
       });
-      const DogApi = await apiDogs.filter((e) => e.name === name);
+      const DogApi = await apiDogs.filter(
+        (e) => e.name.toLowerCase() == name.toLowerCase()
+      );
+      // console.log(DogApi);
 
-      if (DogApi.length === 0 && DogDB.length === 0) {
+      if (DogDB.length > 0) {
+        res.status(200).send(DogDB);
+      } else if (DogApi.length > 0) {
+        const dog1 = await DogApi.map((e) => {
+          return {
+            id: e.id,
+            name: e.name,
+            altura: e.height.metric,
+            peso: e.weight.metric,
+            año_de_vida: e.life_span,
+            image: e.image.url,
+          };
+        });
+        console.log(dog1);
+        res.status(200).send(dog1);
+      } else {
         res
           .status(404)
           .send("The breed of dog you are looking for does not exist!");
-      } else if (DogDB) {
-        res.status(200).send(DogDB);
-      } else {
-        res.status(200).send(DogApi);
       }
     } catch (error) {
       console.log("ERROR EN GET:", error);
@@ -82,42 +96,18 @@ router.get("/dogs", async (req, res) => {
   }
 });
 
-// router.get("/dogs?name=", async (req, res) => {
-//   // const apiDogs = await api();
-//   const { name } = req.query;
-//   if (name) {
-//     try {
-//       const DogDB = await Dog.findOne({
-//         where: {
-//           name: {
-//             [Op.iLike]: `%${name}%`,
-//           },
-//         },
-//       });
-//       const DogApi =  await apiDogs.filter((e) => {
-//         if (e.name === name) {
-//           return name;
-//         }
-//       });
-
-//       if (DogDB) {
-//         res.status(200).send(DogDB);
-//       }
-//       else if (DogApi) {
-//         res.status(200).send(DogApi);
-//       }
-//        else {
-//         res
-//           .status(404)
-//           .send("The breed of dog you are looking for does not exist!");
-//       }
-//     } catch (error) {
-//       console.log("ERROR EN GET:", error);
-//     }
-//   }
-// });
-
-router.get("/dogs/id");
+router.get("/dogs/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (id === 0) {
+      res.status(404).send("You must enter the ID");
+    }
+    if (id) {
+    }
+  } catch (error) {
+    console.log("ERROR EN ID:", error);
+  }
+});
 
 router.get("/temperament");
 
