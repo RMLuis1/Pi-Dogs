@@ -102,7 +102,7 @@ router.get("/dogs/:id", async (req, res) => {
   try {
     if (id == 0) {
       res.status(404).send("You must enter the ID");
-    }else if (id) {
+    } else if (id) {
       const DogDB = await Dog.findByPk(id);
       const DogApi = await apiDogs.filter((e) => e.id == id);
       // console.log(DogApi);
@@ -132,9 +132,68 @@ router.get("/dogs/:id", async (req, res) => {
     console.log("ERROR EN ID:", error);
   }
 });
+router.post("/dog", async (req, res) => {
+  const { ID, name, altura, peso, año_de_vida, image, Temperamentos } =
+    req.query;
+  try {
+    const dogCreate = await Dog.create({
+      ID: ID,
+      name: name,
+      altura: altura,
+      peso: peso,
+      año_de_vida: año_de_vida,
+      image: image,
+    });
 
-router.get("/temperament");
+    const dogTemperamento = await Temperamento.findAll({
+      where: {
+        name: Temperamentos,
+      },
+    });
 
-router.post("/dog");
+    dogCreate.addDog(dogTemperamento);
+
+    res.status(200).send("Dog breed successfully created!");
+  } catch (error) {
+    console.log("ERROR EN POST: ", error);
+  }
+});
+
+router.get("/temperament", async (req, res) => {
+  const apiDogs = await api();
+
+  try {
+    const dbTemp = await Temperamento.findAll({ include: [Dog] });
+    if (!dbTemp.length) {
+      const prueba = await apiDogs
+        ?.map((e) => e.temperament)
+        .join()
+        .split(",");
+
+      const pruebaTEMP = await prueba.map((e) => e.trim());
+      pruebaTEMP.forEach((e) => {
+        if (e !== "") {
+          Temperamento.findOrCreate({
+            where: {
+              name: e,
+            },
+          });
+        }
+      });
+      const tempDb = await Temperamento.findAll();
+      if (tempDb) {
+        console.log(tempDb)
+        res.status(200).send(tempDb);
+      } else {
+        res.status(404).send("ERROR AQUI!!");
+      }
+    } else {
+      console.log(dbTemp)
+      res.status(200).send(dbTemp);
+    }
+  } catch (error) {
+    console.log("ERROR EN TEMPERAMENT: ", error);
+  }
+});
 
 module.exports = router;
