@@ -103,11 +103,12 @@ router.get("/dogs/:id", async (req, res) => {
     if (id == 0) {
       res.status(404).send("You must enter the ID");
     } else if (id) {
-      const DogDB = await Dog.findByPk(id);
       const DogApi = await apiDogs.filter((e) => e.id == id);
       // console.log(DogApi);
 
-      if (DogDB) {
+      if (id.length > 5) {
+        const DogDB = await Dog.findByPk(id, { include: [Temperamento] });
+
         res.status(200).send(DogDB);
       } else if (DogApi.length > 0) {
         const dog1 = await DogApi.map((e) => {
@@ -134,6 +135,9 @@ router.get("/dogs/:id", async (req, res) => {
 });
 router.post("/dog", async (req, res) => {
   const { name, altura, peso, años_de_vida, image, Temperamentos } = req.body;
+  if (!name && !altura && !peso) {
+    res.status(404).send("Debes ingresar: Name, Altura y peso!!");
+  }
   try {
     const dogCreate = await Dog.create({
       name: name,
@@ -142,7 +146,7 @@ router.post("/dog", async (req, res) => {
       años_de_vida: años_de_vida,
       image: image,
     });
-     const dogTemperamento = await Temperamento.findAll({
+    const dogTemperamento = await Temperamento.findAll({
       where: {
         name: Temperamentos,
       },
@@ -168,10 +172,10 @@ router.get("/temperament", async (req, res) => {
         .split(",");
 
       const pruebaTEMP = await prueba.map((e) => e.trim());
-     
-      const sinRepet= new Set(pruebaTEMP)
-      const result= [...sinRepet]
- console.log(result);
+
+      const sinRepet = new Set(pruebaTEMP);
+      const result = [...sinRepet];
+      console.log(result);
       result.forEach((e) => {
         if (e !== "") {
           Temperamento.findOrCreate({
