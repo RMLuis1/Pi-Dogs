@@ -20,7 +20,7 @@ const api = async () => {
 
 router.get("/dogs", async (req, res) => {
   const apiDogs = await api();
-  const dbDog = await Dog.findAll();
+  const dbDog = await Dog.findAll({ include: [Temperamento] });
   const { name } = req.query;
 
   if (name) {
@@ -133,25 +133,22 @@ router.get("/dogs/:id", async (req, res) => {
   }
 });
 router.post("/dog", async (req, res) => {
-  const { ID, name, altura, peso, año_de_vida, image, Temperamentos } =
-    req.query;
+  const { name, altura, peso, años_de_vida, image, Temperamentos } = req.body;
   try {
     const dogCreate = await Dog.create({
-      ID: ID,
       name: name,
       altura: altura,
       peso: peso,
-      año_de_vida: año_de_vida,
+      años_de_vida: años_de_vida,
       image: image,
     });
-
-    const dogTemperamento = await Temperamento.findAll({
+     const dogTemperamento = await Temperamento.findAll({
       where: {
         name: Temperamentos,
       },
     });
 
-    dogCreate.addDog(dogTemperamento);
+    dogCreate.addTemperamento(dogTemperamento);
 
     res.status(200).send("Dog breed successfully created!");
   } catch (error) {
@@ -171,7 +168,11 @@ router.get("/temperament", async (req, res) => {
         .split(",");
 
       const pruebaTEMP = await prueba.map((e) => e.trim());
-      pruebaTEMP.forEach((e) => {
+     
+      const sinRepet= new Set(pruebaTEMP)
+      const result= [...sinRepet]
+ console.log(result);
+      result.forEach((e) => {
         if (e !== "") {
           Temperamento.findOrCreate({
             where: {
@@ -182,13 +183,13 @@ router.get("/temperament", async (req, res) => {
       });
       const tempDb = await Temperamento.findAll();
       if (tempDb) {
-        console.log(tempDb)
+        // console.log(tempDb);
         res.status(200).send(tempDb);
       } else {
         res.status(404).send("ERROR AQUI!!");
       }
     } else {
-      console.log(dbTemp)
+      console.log(dbTemp);
       res.status(200).send(dbTemp);
     }
   } catch (error) {
