@@ -104,14 +104,14 @@ router.get("/dogs/:id", async (req, res) => {
     if (id == 0) {
       res.status(404).send("You must enter the ID");
     } else if (id) {
-      const DogApi = await apiDogs.filter((e) => e.id == id);
       // console.log(DogApi);
 
-      if (id.length > 5) {
+      if (id.includes("-")) {
         const DogDB = await Dog.findByPk(id, { include: [Temperamento] });
 
         res.status(200).send(DogDB);
-      } else if (DogApi.length > 0) {
+      } else {
+        const DogApi = await apiDogs.filter((e) => e.id == id);
         const dog1 = await DogApi.map((e) => {
           return {
             id: e.id,
@@ -123,12 +123,8 @@ router.get("/dogs/:id", async (req, res) => {
             temperament: e.temperament,
           };
         });
-        console.log(dog1);
-        res.status(200).send(dog1);
-      } else {
-        res
-          .status(404)
-          .send("The breed of dog you are looking for does not exist!");
+console.log(dog1)
+      res.status(200).send(dog1);
       }
     }
   } catch (error) {

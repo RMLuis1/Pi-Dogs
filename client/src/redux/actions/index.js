@@ -1,31 +1,50 @@
 import axios from "axios";
 
-export const    GET_ALL_DOG= "GET_ALL_DOG"
-export const GET_ALL_DOG_ID= "GET_ALL_DOG_ID"
+export const GET_ALL_DOG = "GET_ALL_DOG";
+export const GET_ALL_DOG_ID = "GET_ALL_DOG_ID";
+export const GET_TEMPERAMENT = "GET_TEMPERAMENT";
 
-export const getDog= ()=>{
-    return(dispatch)=>{
-        axios.get(`http://localhost:3001/dogs`).then((result)=>{
-            return dispatch({
-                type: GET_ALL_DOG,
-                payload: result.data,
-            })
-        })
-    }
+export const getDog = () => {
+  return (dispatch) => {
+    axios.get(`http://localhost:3001/dogs`).then((result) => {
+      return dispatch({
+        type: GET_ALL_DOG,
+        payload: result.data,
+      });
+    });
+  };
+};
+
+// export function getDog(){
+// return async function (dispatch){
+// const result= await axios.get(`http://localhost:3001/dogs`)
+//     return dispatch({
+//         type: GET_ALL_DOG,
+//         payload: result.data
+//     })
+// }
+// }
+
+export function getDogID(id) {
+  return async function (dispatch) {
+    return await axios
+      .get(`http://localhost:3001/dogs/${id}`)
+      .then((result) => {
+       
+        return dispatch({
+          type: GET_ALL_DOG_ID,
+          payload: result.data,
+        });
+      });
+  };
 }
 
-export function getDogID(id){
- return async function(dispatch){
-     return await axios.get(`http://localhost:3001/dogs/${id}`).then((result)=>{
-         return dispatch({
-             type: GET_ALL_DOG_ID,
-             payload: result.data
-         })
-     })
- }
-
-
+export function getTemperament() {
+  return async function (dispatch) {
+    const temperaments = await axios.get("http://localhost:3000/temperament");
+    return dispatch({
+      type: GET_TEMPERAMENT,
+      payload: temperaments.data,
+    });
+  };
 }
-
-
-

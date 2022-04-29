@@ -1,0 +1,48 @@
+.div1 {
+    list-style: none;
+    width: 800px;
+    height: 350px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 240px);
+    gap: 4re;
+    justify-content: center;
+    background-color: none;
+}
+
+.div2 {
+    text-align: center;
+    border: 3px solid rgb(28, 129, 124);
+    background-color: transparent;
+    border-radius: 10%;
+    width: 550px;
+    height: 770px;
+    font-size: 18px;
+    margin-top: 50px;
+
+}
+
+.buttonVolver {
+    height: auto;
+    width: 300px;
+    font-size: 25px;
+    background-color: transparent;
+
+    line-height: 26px;
+    border-radius: 28px;
+    border-color: #32c3d6;
+    cursor: pointer;
+    transition: width 0.2s;
+    float: left;
+    margin-right: 3%;
+    color: rgb(185, 185, 185);
+}
+
+.buttonVolver:hover {
+    width: 320px;
+    background-color: #0e0a4b;
+}
+.img{
+    border-radius: 15px;
+    margin-top: 50px;
+}
