@@ -1,4 +1,4 @@
-import { GET_ALL_DOG, GET_ALL_DOG_ID } from "../actions";
+import { GET_ALL_DOG, GET_ALL_DOG_ID, GET_ALL_DOGS_NAME } from "../actions";
 
 const initialState = {
   dogs: [],
@@ -19,6 +19,11 @@ export default function Reducer(state = initialState, action) {
         ...state,
         detallDog: action.payload,
       };
+    case GET_ALL_DOGS_NAME:
+      return {
+        ...state,
+        dogs: action.payload,
+      }
 
     default:
       return state;

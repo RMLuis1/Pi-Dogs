@@ -3,6 +3,7 @@ import axios from "axios";
 export const GET_ALL_DOG = "GET_ALL_DOG";
 export const GET_ALL_DOG_ID = "GET_ALL_DOG_ID";
 export const GET_TEMPERAMENT = "GET_TEMPERAMENT";
+export const GET_ALL_DOGS_NAME = "GET_ALL_DOGS_NAME";
 
 export const getDog = () => {
   return (dispatch) => {
@@ -30,11 +31,31 @@ export function getDogID(id) {
     return await axios
       .get(`http://localhost:3001/dogs/${id}`)
       .then((result) => {
-       
         return dispatch({
           type: GET_ALL_DOG_ID,
           payload: result.data,
         });
+      });
+  };
+}
+
+export function getSearch(name) {
+  return async function (dispatch) {
+    return await axios
+      .get(`http://localhost:3001/dogs?name=${name}`)
+      .then((result) => {
+        return dispatch({
+          type: GET_ALL_DOGS_NAME,
+          payload: result.data,
+        });
+      })
+      .catch(function (error) {
+        alert("The breed of dog you are looking for does not exist!");
+        console.log(
+          error.name +
+            "The breed of dog you are looking for does not exist!" +
+            error.message
+        );
       });
   };
 }
