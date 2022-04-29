@@ -1,0 +1,32 @@
+
+.title{
+color: rgb(0, 0, 0);
+display: grid;
+font-size:300%;
+gap: 40px;
+padding: 70px;
+justify-content: left;
+font-size: 100px;
+}
+.button{
+    
+        height: auto;
+        width: 300px;
+        font-size: 30px;
+        background-color: transparent;
+        color: rgb(16, 16, 16);
+        line-height: 26px;
+        border-radius: 28px;
+        border-color: #940000;
+        cursor: pointer;
+        transition: width 0.2s;
+        float: none;
+        margin-left: 3%;
+    
+    
+    
+}
+.button:hover {
+    width: 320px;
+    background-color: #3d4b70;
+}

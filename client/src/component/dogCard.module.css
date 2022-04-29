@@ -1,0 +1,51 @@
+.dogCard {
+    width: 100%;
+
+    height: 100%;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    background-color: rgb(128, 128, 128);
+    border-radius: 1rem;
+
+    border: 3px solid rgb(202, 202, 202);
+    margin-top: 150px;
+}
+
+.li {
+    list-style: none;
+}
+
+.name {
+    justify-content: center;
+    text-align: center;
+    text-shadow: 10px 9px 5px rgb(0, 0, 0);
+}
+
+.peso, .temperament {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    text-align: center;
+    text-shadow: 10px 9px 5px rgb(0, 0, 0);
+}
+
+
+
+.Image {
+    border-radius: 15px;
+    background-color: azure;
+    box-shadow: 10px 9px 5px rgb(0, 0, 0);
+}
+.Image:hover {
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+@media (max-width: 560px) {
+    .Image {
+        width: 90%;
+        height: auto;
+    }
+}

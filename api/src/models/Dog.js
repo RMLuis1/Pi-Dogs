@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      temperament: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
     },
     { timestamp: false }
   );

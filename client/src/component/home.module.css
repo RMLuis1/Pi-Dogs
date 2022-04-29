@@ -1,0 +1,72 @@
+.dogsCard{
+    list-style: none;
+    width: 80%;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 340px);
+    gap:4re;
+    justify-content: center;
+    background-color: none;
+  
+}
+.header{
+width: 100%;
+overflow: hidden;
+background:rgb(110, 110, 110);
+position: fixed;
+height: 75px;
+margin:auto;
+top: 0;
+}
+.title{
+    color: rgb(8, 8, 8);
+    font-size: 40px;
+    line-height: 10px;
+    float: left;
+}
+.buttonCreate {
+    height: auto;
+    width: 290px;
+    font-size: 30px;
+    background-color: transparent;
+    color: rgba(90, 72, 248, 0);
+    line-height: 26px;
+    border-radius: 28px;
+    border-color: #ffffff;
+    cursor: pointer;
+    transition: width 0.2s;
+    float: right;
+    margin-right: 3%;
+    color: rgb(6, 6, 61);
+}
+
+.buttonCreate:hover {
+    width: 300px;
+    background-color: #3cb9cf;
+}
+.search {
+    display: inline-block;
+    padding: 1px 10px;
+  
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+    margin-left: 300px;
+    /* margin-top: 10px; */
+}
+.create {
+    padding: 20px 20px;
+    /* line-height: 40px; */
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 0;
+    float: right;
+
+}
+
+
+.linkName{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}

@@ -79,6 +79,7 @@ router.get("/dogs", async (req, res) => {
             peso: e.weight.metric,
             año_de_vida: e.life_span,
             image: e.image.url,
+            temperament: e.temperament,
           };
         });
 
@@ -119,6 +120,7 @@ router.get("/dogs/:id", async (req, res) => {
             peso: e.weight.metric,
             año_de_vida: e.life_span,
             image: e.image.url,
+            temperament: e.temperament,
           };
         });
         console.log(dog1);
