@@ -63,7 +63,10 @@ export default function Home() {
                   image={e.image}
                   peso={e.peso}
                   temperament={e.temperament}
+                  button={ <Link to={`/home/${e.id}`}/>}
                 />
+                 
+                
               </ul>
             </div>
           );

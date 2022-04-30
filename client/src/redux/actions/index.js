@@ -4,6 +4,8 @@ export const GET_ALL_DOG = "GET_ALL_DOG";
 export const GET_ALL_DOG_ID = "GET_ALL_DOG_ID";
 export const GET_TEMPERAMENT = "GET_TEMPERAMENT";
 export const GET_ALL_DOGS_NAME = "GET_ALL_DOGS_NAME";
+export const CREATE_DOGS = "CREATE_DOGS";
+export const ADD_TEMPERAMENTBYDOGS = "ADD_TEMPERAMENTBYDOGS";
 
 export const getDog = () => {
   return (dispatch) => {
@@ -67,5 +69,25 @@ export function getTemperament() {
       type: GET_TEMPERAMENT,
       payload: temperaments.data,
     });
+  };
+}
+
+export function createDogs(dogs) {
+  return async function (dispatch) {
+    return await axios
+      .post("http://localhost:3001/create", dogs)
+      .then((result) => {
+        dispatch({
+          type: CREATE_DOGS,
+          payload: result.data,
+        });
+      });
+  };
+}
+
+export function AddTemperamentByDogs(payload) {
+  return {
+    type: ADD_TEMPERAMENTBYDOGS,
+    payload,
   };
 }

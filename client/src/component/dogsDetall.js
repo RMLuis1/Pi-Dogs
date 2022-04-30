@@ -59,7 +59,7 @@ const dogsDetall = useSelector((state) => state.detallDog);
               <strong>Years of life: </strong> {dogsDetall[0].año_de_vida}{" "}
             </p>
             <p>
-              <strong>Temperamento: </strong>
+              <strong>Temperament: </strong>
               {dogsDetall[0].temperament}
             </p>
           </div>

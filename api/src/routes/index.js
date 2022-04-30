@@ -108,10 +108,11 @@ router.get("/dogs/:id", async (req, res) => {
 
       if (id.includes("-")) {
         const DogDB = await Dog.findByPk(id, { include: [Temperamento] });
-
-        res.status(200).send(DogDB);
+        console.log(DogDB);
+        res.status(200).json(DogDB);
       } else {
         const DogApi = await apiDogs.filter((e) => e.id == id);
+        console.log(DogApi);
         const dog1 = await DogApi.map((e) => {
           return {
             id: e.id,
@@ -123,8 +124,8 @@ router.get("/dogs/:id", async (req, res) => {
             temperament: e.temperament,
           };
         });
-console.log(dog1)
-      res.status(200).send(dog1);
+        console.log(dog1);
+        res.status(200).send(dog1);
       }
     }
   } catch (error) {
