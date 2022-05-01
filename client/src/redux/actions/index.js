@@ -49,6 +49,7 @@ export function getSearch(name) {
         return dispatch({
           type: GET_ALL_DOGS_NAME,
           payload: result.data,
+          
         });
       })
       .catch(function (error) {

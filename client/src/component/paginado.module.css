@@ -1,0 +1,31 @@
+/* .pagination {
+    list-style: none;
+    width: 80%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttonpaginado {
+    height: auto;
+    width: 30px;
+    font-size: 15px;
+    background-color: blueviolet;
+    color: rgba(90, 72, 248, 0);
+    line-height: 25px;
+    border-radius: 10px;
+    border-color: #32c3d6;
+    cursor: pointer;
+    transition: width 0.2s;
+    
+    margin-right: 3%;
+    color: rgb(6, 6, 61);
+}
+.buttonpaginado:hover {
+    width: 35px;
+    background-color: #3cb9cf;
+}
+
+.respon{
+    background-color: none;
+} */

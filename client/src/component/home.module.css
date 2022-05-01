@@ -1,3 +1,7 @@
+.container{
+    background-color: black;
+}
+
 .dogsCard{
     list-style: none;
     width: 80%;
@@ -6,8 +10,7 @@
     grid-template-columns: repeat(auto-fill, 340px);
     gap:4re;
     justify-content: center;
-    background-color: none;
-  
+    
 }
 .header{
 width: 100%;
@@ -70,3 +73,18 @@ top: 0;
     color: black;
     font-size: 20px;
 }
+.navbar {
+    list-style: none;
+    width: 80%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+
+}
+
+/* .paginado {
+    margin-bottom: 30px;
+
+} */
