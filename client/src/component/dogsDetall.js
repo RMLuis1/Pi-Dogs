@@ -4,25 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDogID } from "../redux/actions";
 import { Spinner } from "./Snipper";
-import styles from "./dogsDetall.module.css"
+import styles from "./dogsDetall.module.css";
 
 export default function Dogs() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-const [isLoading, setIsLoading] = useState (true);
-  
-useEffect(() => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
     dispatch(getDogID(id));
   }, [id, dispatch]);
 
-
   setTimeout(() => {
-  setIsLoading(false);
-}, 4000);
+    setIsLoading(false);
+  }, 4000);
 
-const dogsDetall = useSelector((state) => state.detallDog);
-  console.log("ESTO ES DETALL: ",dogsDetall)
+  const dogsDetall = useSelector((state) => state.detallDog);
+  console.log("ESTO ES DETALL: ", dogsDetall);
 
   if (isLoading) {
     return (
@@ -56,12 +55,18 @@ const dogsDetall = useSelector((state) => state.detallDog);
               <strong>Weight: </strong> {dogsDetall[0].peso} Kg
             </p>
             <p>
-              <strong>Years of life: </strong> {dogsDetall[0].año_de_vida}{" "}
+              <strong>Years of life: </strong> {dogsDetall[0].añosDeVida} Years
             </p>
-            <p>
-              <strong>Temperament: </strong>
-              {dogsDetall[0].temperament}
-            </p>
+            <strong>Temperament: </strong>
+            {dogsDetall[0].temperament? 
+              <p>{dogsDetall[0].temperament}</p>
+             : dogsDetall[0].temperamentos.map((e) => {
+                return <p>{e.name}</p>;
+              })
+            
+            
+          }
+           
           </div>
         ) : (
           "Loading...."

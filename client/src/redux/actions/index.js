@@ -6,6 +6,7 @@ export const GET_TEMPERAMENT = "GET_TEMPERAMENT";
 export const GET_ALL_DOGS_NAME = "GET_ALL_DOGS_NAME";
 export const CREATE_DOGS = "CREATE_DOGS";
 export const ADD_TEMPERAMENTBYDOGS = "ADD_TEMPERAMENTBYDOGS";
+export const FILTER_ALPHABETICALLY = "FILTER_ALPHABETICALLY";
 
 export const getDog = () => {
   return (dispatch) => {
@@ -49,7 +50,6 @@ export function getSearch(name) {
         return dispatch({
           type: GET_ALL_DOGS_NAME,
           payload: result.data,
-          
         });
       })
       .catch(function (error) {
@@ -65,30 +65,62 @@ export function getSearch(name) {
 
 export function getTemperament() {
   return async function (dispatch) {
-    const temperaments = await axios.get("http://localhost:3000/temperament");
+    const result = await axios.get("http://localhost:3001/temperament");
     return dispatch({
       type: GET_TEMPERAMENT,
-      payload: temperaments.data,
+      payload: result.data,
     });
   };
 }
 
-export function createDogs(dogs) {
-  return async function (dispatch) {
-    return await axios
-      .post("http://localhost:3001/create", dogs)
-      .then((result) => {
-        dispatch({
-          type: CREATE_DOGS,
-          payload: result.data,
-        });
-      });
+// export function createDogs(dogs) {
+//   return async function (dispatch) {
+//     return await axios
+//       .post("http://localhost:3001/create", dogs)
+//       .then((result) => {
+//         dispatch({
+//           type: CREATE_DOGS,
+//           payload: result.data,
+//         });
+//       });
+//   };
+// }
+export const createDogs = ({
+  name,
+  alturaMin,
+  alturaMax,
+  pesoMin,
+  pesoMax,
+  añosMin,
+  añosMax,
+  image,
+  temperament,
+}) => {
+  return async (dispatch) => {
+    await axios.post("http://localhost:3001/dog", {
+      name: name,
+      altura: `${alturaMin} - ${alturaMax}`,
+      peso: `${pesoMin} - ${pesoMax}`,
+      añosDeVida: `${añosMin} - ${añosMax}`,
+      image: image,
+      nameTemp:temperament
+    });
+    dispatch({
+      type: CREATE_DOGS,
+    });
   };
-}
+};
 
-export function AddTemperamentByDogs(payload) {
+// export function AddTemperamentByDogs(payload) {
+//   return {
+//     type: ADD_TEMPERAMENTBYDOGS,
+//     payload,
+//   };
+// }
+
+export function filterAlphabetically(payload) {
   return {
-    type: ADD_TEMPERAMENTBYDOGS,
+    type: "FILTER_ALPHABETICALLY",
     payload,
   };
 }

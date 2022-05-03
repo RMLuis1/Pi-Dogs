@@ -25,15 +25,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      años_de_vida: {
+      añosDeVida: {
         type: DataTypes.STRING,
         allowNull: true,
       },
       image: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
-      temperament: {
         type: DataTypes.TEXT,
         allowNull: true,
       },

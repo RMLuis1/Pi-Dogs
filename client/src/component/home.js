@@ -3,29 +3,29 @@ import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import DogCard from "./dogCard";
-import { getDog } from "../redux/actions";
+import { filterAlphabetically, getDog } from "../redux/actions";
 import styles from "./home.module.css";
 import { Spinner } from "./Snipper";
 import { Search } from "./search";
-import Paginado from "./paginado";
+// import Paginado from "./paginado";
 
 export default function Home() {
   const dispatch = useDispatch();
 
   const allDogs = useSelector((state) => state.dogs);
   const [isLoading, setIsLoading] = useState(true);
-
-  const [dogPagina, setDogPagina] = useState(1);
-  const [dogPorPagina, setDogPorPagina] = useState(8);
-  // const [ ]= useState()
-
-  const indexUltimoDog = dogPagina * dogPorPagina;
-  const indexPrimerDog = indexUltimoDog - dogPorPagina;
-  const currentDog = allDogs.slice(indexPrimerDog, indexUltimoDog);
-
-  const paginado = (pageNumber) => {
-    setDogPagina(pageNumber);
-  };
+  const [orden, setOrden ]= useState("")
+  
+  // const [dogPagina, setDogPagina] = useState(1);
+  // const [dogPorPagina, setDogPorPagina] = useState(8);
+  
+  // const indexUltimoDog = dogPagina * dogPorPagina;
+  // const indexPrimerDog = indexUltimoDog - dogPorPagina;
+  // const currentDog = allDogs.slice(indexPrimerDog, indexUltimoDog);
+  
+  // const paginado = (pageNumber) => {
+  //   setDogPagina(pageNumber);
+  // };
 
   setTimeout(() => {
     setIsLoading(false);
@@ -42,6 +42,18 @@ export default function Home() {
       </div>
     );
   }
+//----------------------------------------------------------------------------------------
+//!filtrado por Alfabeto
+
+function handleSort(e){
+e.preventDefault()
+dispatch(filterAlphabetically(e.target.value))
+// setDogPagina(1);
+setOrden(`Ordenado ${e.target.value}`)
+}
+
+//----------------------------------------------------------------------------------------
+
 
   return (
     <div className={styles.container}>
@@ -63,7 +75,7 @@ export default function Home() {
       </header>
       <div>
         <div className={styles.navbar}>
-          <select>
+          <select onChange={(e)=>{handleSort(e)}} >
             <option value="">Orden ALfabetico</option>
             <option value="ascendente">A-Z</option>
             <option value="descendente">Z-A</option>
@@ -84,16 +96,16 @@ export default function Home() {
           </select>
         </div>
 
-        <div className={styles.paginado}>
+        {/* <div className={styles.paginado}>
           <Paginado
             dogPorPagina={dogPorPagina}
             allDogs={allDogs.length}
             paginado={paginado}
           />
-        </div>
+        </div> */}
 
         <div className={styles.dogsCard}>
-          {currentDog?.map((e) => {
+          {allDogs?.map((e) => {
             return (
               <div key={e.id}>
                 <ul>
@@ -105,7 +117,11 @@ export default function Home() {
                     }
                     image={e.image}
                     peso={e.peso}
-                    temperament={e.temperament}
+                    //!VER SI O SI TEMPERAMENT=> NO MUESTRA LOS TEMPERAMENTOS DE LOS
+                    //!PERROS CREADOS! 
+                    //!LOS DE LA API LOS MUESTRA CON SOLO PONER e.temperament....
+                    temperament={e.temperamentos? 
+                       e.temperamentos.map(e=> e.name): e.temperament}
                     button={<Link to={`/home/${e.id}`} />}
                   />
                 </ul>

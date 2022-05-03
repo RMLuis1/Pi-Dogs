@@ -5,6 +5,7 @@ import {
   GET_TEMPERAMENT,
   CREATE_DOGS,
   ADD_TEMPERAMENTBYDOGS,
+  FILTER_ALPHABETICALLY,
 } from "../actions";
 
 const initialState = {
@@ -41,11 +42,28 @@ export default function Reducer(state = initialState, action) {
       return {
         ...state,
       };
-    case ADD_TEMPERAMENTBYDOGS:
-      return {
-        ...state,
-        dogs: action.payload,
-      };
+    // case ADD_TEMPERAMENTBYDOGS:
+    //   return {
+    //     ...state,
+    //     dogs: action.payload,
+    //   };
+    case FILTER_ALPHABETICALLY:
+      if (action.payload === "ascendente") {
+        return {
+          ...state,
+          dogs: state.dogs.sort((a, b) => a.name.localeCompare(b.name)),
+        };
+      } else if (action.payload === "descendente") {
+        return {
+          ...state,
+          dogs: state.dogs.sort((a, b) => b.name.localeCompare(a.name)),
+        };
+      } else {
+        return {
+          ...state,
+          dogs: state.dogs,
+        };
+      }
 
     default:
       return state;

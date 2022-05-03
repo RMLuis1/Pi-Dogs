@@ -77,7 +77,7 @@ router.get("/dogs", async (req, res) => {
             name: e.name,
             altura: e.height.metric,
             peso: e.weight.metric,
-            año_de_vida: e.life_span,
+            añosDeVida: e.life_span,
             image: e.image.url,
             temperament: e.temperament,
           };
@@ -107,9 +107,15 @@ router.get("/dogs/:id", async (req, res) => {
       // console.log(DogApi);
 
       if (id.includes("-")) {
-        const DogDB = await Dog.findByPk(id, { include: [Temperamento] });
+        let DogDB = [];
+        DogDB.push(
+          await Dog.findByPk(id, {
+            include: [Temperamento],
+          })
+        );
         console.log(DogDB);
-        res.status(200).json(DogDB);
+
+        res.status(200).send(DogDB);
       } else {
         const DogApi = await apiDogs.filter((e) => e.id == id);
         console.log(DogApi);
@@ -119,7 +125,7 @@ router.get("/dogs/:id", async (req, res) => {
             name: e.name,
             altura: e.height.metric,
             peso: e.weight.metric,
-            año_de_vida: e.life_span,
+            añosDeVida: e.life_span,
             image: e.image.url,
             temperament: e.temperament,
           };
@@ -133,7 +139,7 @@ router.get("/dogs/:id", async (req, res) => {
   }
 });
 router.post("/dog", async (req, res) => {
-  const { name, altura, peso, años_de_vida, image, Temperamentos } = req.body;
+  const { name, altura, peso, añosDeVida, image, nameTemp } = req.body;
   if (!name && !altura && !peso) {
     res.status(404).send("Debes ingresar: Name, Altura y peso!!");
   }
@@ -142,12 +148,12 @@ router.post("/dog", async (req, res) => {
       name: name,
       altura: altura,
       peso: peso,
-      años_de_vida: años_de_vida,
+      añosDeVida: añosDeVida,
       image: image,
     });
     const dogTemperamento = await Temperamento.findAll({
       where: {
-        name: Temperamentos,
+        name: nameTemp,
       },
     });
 
@@ -172,10 +178,10 @@ router.get("/temperament", async (req, res) => {
 
       const pruebaTEMP = await prueba.map((e) => e.trim());
 
-      const sinRepet = new Set(pruebaTEMP);
-      const result = [...sinRepet];
-      console.log(result);
-      result.forEach((e) => {
+      // const sinRepet = new Set(pruebaTEMP);
+      // const result = [...sinRepet];
+      // console.log(result);
+      pruebaTEMP.forEach((e) => {
         if (e !== "") {
           Temperamento.findOrCreate({
             where: {
