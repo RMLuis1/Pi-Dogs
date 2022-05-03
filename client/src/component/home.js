@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import DogCard from "./dogCard";
 import {
   filterAlphabetically,
+  filterCreate,
   filterTemperament,
   filterWeight,
   getDog,
@@ -80,6 +81,14 @@ export default function Home() {
     setOrden(`Ordenado ${e.target.value}`);
   }
 
+  //---------------------------------------------------------------------------------------
+  //!filtro por db y api
+  function handleCreated(e) {
+    e.preventDefault();
+    dispatch(filterCreate(e.target.value));
+    setOrden(`Ordenado ${e.target.value}`);
+  }
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -126,10 +135,10 @@ export default function Home() {
               </option>
             ))}
           </select>
-          <select>
-            <option>Dog breed filter</option>
-            <option></option>
-            <option></option>
+          <select onChange={(e) => handleCreated(e)}>
+            <option value="All">Dog breed filter</option>
+            <option value="Created">Dogs Created</option>
+            <option value="Api">Api</option>
           </select>
         </div>
 
@@ -144,7 +153,7 @@ export default function Home() {
         <div className={styles.dogsCard}>
           {allDogs?.map((e) => {
             return (
-              <div key={e.id}>
+              <div key={e.name}>
                 <ul>
                   <DogCard
                     name={
@@ -159,6 +168,7 @@ export default function Home() {
                         ? e.temperamentos.map((e) => e.name)
                         : e.temperament
                     }
+                
                   />
                 </ul>
               </div>

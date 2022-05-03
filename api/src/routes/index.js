@@ -31,6 +31,7 @@ router.get("/dogs", async (req, res) => {
             [Op.iLike]: `%${name}%`,
           },
         },
+        include: [Temperamento],
       });
       const DogApi = await apiDogs.filter(
         (e) => e.name.toLowerCase() == name.toLowerCase()
@@ -48,6 +49,7 @@ router.get("/dogs", async (req, res) => {
             peso: e.weight.metric,
             año_de_vida: e.life_span,
             image: e.image.url,
+            temperament: e.temperament,
           };
         });
         console.log(dog1);

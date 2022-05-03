@@ -8,6 +8,7 @@ export const CREATE_DOGS = "CREATE_DOGS";
 export const FILTER_ALPHABETICALLY = "FILTER_ALPHABETICALLY";
 export const FILTER_WEIGHT = "FILTER_WEIGHT";
 export const FILTER_TEMPERAMENT="FILTER_TEMPERAMENT"
+export const FILTER_CREATE= "FILTER_CREATE"
 
 export const getDog = () => {
   return (dispatch) => {
@@ -134,4 +135,13 @@ export function filterTemperament(payload){
     payload
   }
 }
+
+export function filterCreate(payload){
+  return {
+    type: "FILTER_CREATE",
+    payload
+  }
+}
+
+
 
