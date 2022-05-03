@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import DogCard from "./dogCard";
-import { filterAlphabetically, getDog } from "../redux/actions";
+import { filterAlphabetically, filterWeight, getDog } from "../redux/actions";
 import styles from "./home.module.css";
 import { Spinner } from "./Snipper";
 import { Search } from "./search";
@@ -14,15 +14,15 @@ export default function Home() {
 
   const allDogs = useSelector((state) => state.dogs);
   const [isLoading, setIsLoading] = useState(true);
-  const [orden, setOrden ]= useState("")
-  
+  const [orden, setOrden] = useState("");
+
   // const [dogPagina, setDogPagina] = useState(1);
   // const [dogPorPagina, setDogPorPagina] = useState(8);
-  
+
   // const indexUltimoDog = dogPagina * dogPorPagina;
   // const indexPrimerDog = indexUltimoDog - dogPorPagina;
   // const currentDog = allDogs.slice(indexPrimerDog, indexUltimoDog);
-  
+
   // const paginado = (pageNumber) => {
   //   setDogPagina(pageNumber);
   // };
@@ -42,18 +42,24 @@ export default function Home() {
       </div>
     );
   }
-//----------------------------------------------------------------------------------------
-//!filtrado por Alfabeto
+  //----------------------------------------------------------------------------------------
+  //!filtrado por Alfabeto
 
-function handleSort(e){
-e.preventDefault()
-dispatch(filterAlphabetically(e.target.value))
-// setDogPagina(1);
-setOrden(`Ordenado ${e.target.value}`)
-}
+  function handleSort(e) {
+    e.preventDefault();
+    dispatch(filterAlphabetically(e.target.value));
+    // setDogPagina(1);
+    setOrden(`Ordenado ${e.target.value}`);
+  }
 
-//----------------------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------
+  //!filtrado por peso
 
+  function handleSortPeso(e) {
+    e.preventDefault();
+    dispatch(filterWeight(e.target.value));
+    setOrden(`Ordenado ${e.target.value}`);
+  }
 
   return (
     <div className={styles.container}>
@@ -75,12 +81,20 @@ setOrden(`Ordenado ${e.target.value}`)
       </header>
       <div>
         <div className={styles.navbar}>
-          <select onChange={(e)=>{handleSort(e)}} >
+          <select
+            onChange={(e) => {
+              handleSort(e);
+            }}
+          >
             <option value="">Orden ALfabetico</option>
             <option value="ascendente">A-Z</option>
             <option value="descendente">Z-A</option>
           </select>
-          <select>
+          <select
+            onChange={(e) => {
+              handleSortPeso(e);
+            }}
+          >
             <option value="">Peso</option>
             <option value="ascendente">Ascendente</option>
             <option value="descendente">Descendente</option>
@@ -117,12 +131,11 @@ setOrden(`Ordenado ${e.target.value}`)
                     }
                     image={e.image}
                     peso={e.peso}
-                    //!VER SI O SI TEMPERAMENT=> NO MUESTRA LOS TEMPERAMENTOS DE LOS
-                    //!PERROS CREADOS! 
-                    //!LOS DE LA API LOS MUESTRA CON SOLO PONER e.temperament....
-                    temperament={e.temperamentos? 
-                       e.temperamentos.map(e=> e.name): e.temperament}
-                    button={<Link to={`/home/${e.id}`} />}
+                    temperament={
+                      e.temperamentos
+                        ? e.temperamentos.map((e) => e.name)
+                        : e.temperament
+                    }
                   />
                 </ul>
               </div>

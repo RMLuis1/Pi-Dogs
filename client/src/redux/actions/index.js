@@ -5,8 +5,8 @@ export const GET_ALL_DOG_ID = "GET_ALL_DOG_ID";
 export const GET_TEMPERAMENT = "GET_TEMPERAMENT";
 export const GET_ALL_DOGS_NAME = "GET_ALL_DOGS_NAME";
 export const CREATE_DOGS = "CREATE_DOGS";
-export const ADD_TEMPERAMENTBYDOGS = "ADD_TEMPERAMENTBYDOGS";
 export const FILTER_ALPHABETICALLY = "FILTER_ALPHABETICALLY";
+export const FILTER_WEIGHT = "FILTER_WEIGHT";
 
 export const getDog = () => {
   return (dispatch) => {
@@ -111,16 +111,18 @@ export const createDogs = ({
   };
 };
 
-// export function AddTemperamentByDogs(payload) {
-//   return {
-//     type: ADD_TEMPERAMENTBYDOGS,
-//     payload,
-//   };
-// }
+
 
 export function filterAlphabetically(payload) {
   return {
     type: "FILTER_ALPHABETICALLY",
     payload,
   };
+}
+
+export function filterWeight(payload){
+  return {
+    type: "FILTER_WEIGHT",
+    payload
+  }
 }
