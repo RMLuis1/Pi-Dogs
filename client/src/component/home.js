@@ -3,7 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import DogCard from "./dogCard";
-import { filterAlphabetically, filterWeight, getDog } from "../redux/actions";
+import {
+  filterAlphabetically,
+  filterTemperament,
+  filterWeight,
+  getDog,
+  getTemperament,
+} from "../redux/actions";
 import styles from "./home.module.css";
 import { Spinner } from "./Snipper";
 import { Search } from "./search";
@@ -13,6 +19,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const allDogs = useSelector((state) => state.dogs);
+  const allTemperament = useSelector((state) => state.temperaments);
   const [isLoading, setIsLoading] = useState(true);
   const [orden, setOrden] = useState("");
 
@@ -33,6 +40,10 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getDog());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getTemperament());
   }, [dispatch]);
 
   if (isLoading) {
@@ -58,6 +69,14 @@ export default function Home() {
   function handleSortPeso(e) {
     e.preventDefault();
     dispatch(filterWeight(e.target.value));
+    setOrden(`Ordenado ${e.target.value}`);
+  }
+
+  //----------------------------------------------------------------------------------------
+  //!filtro por temperamentos
+  function handleTemperament(e) {
+    e.preventDefault();
+    dispatch(filterTemperament(e.target.value));
     setOrden(`Ordenado ${e.target.value}`);
   }
 
@@ -99,9 +118,13 @@ export default function Home() {
             <option value="ascendente">Ascendente</option>
             <option value="descendente">Descendente</option>
           </select>
-          <select>
-            <option>Temperament Filter</option>
-            <option></option>
+          <select onChange={(e) => handleTemperament(e)}>
+            <option value="All">Temperament Filter</option>
+            {allTemperament?.map((e) => (
+              <option key={e.name} value={e.name}>
+                {e.name}
+              </option>
+            ))}
           </select>
           <select>
             <option>Dog breed filter</option>

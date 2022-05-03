@@ -6,6 +6,7 @@ import {
   CREATE_DOGS,
   FILTER_ALPHABETICALLY,
   FILTER_WEIGHT,
+  FILTER_TEMPERAMENT,
 } from "../actions";
 
 const initialState = {
@@ -94,6 +95,19 @@ export default function Reducer(state = initialState, action) {
           dogs: state.dogs,
         };
       }
+    case FILTER_TEMPERAMENT:
+      const filterTemper = state.dogs2;
+      const temperam =
+        action.payload === "All"
+          ? filterTemper //filterTemper.filter((e) => e.temperaments.length > 0)
+          : filterTemper.filter((e) => {
+              return e.temperament?.includes(action.payload)
+            });
+
+      return {
+        ...state,
+        dogs: temperam,
+      };
 
     default:
       return state;
