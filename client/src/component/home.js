@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import DogCard from "./dogCard";
 import {
   filterAlphabetically,
@@ -14,7 +14,7 @@ import {
 import styles from "./home.module.css";
 import { Spinner } from "./Snipper";
 import { Search } from "./search";
-// import Paginado from "./paginado";
+import Paginade from "./paginado";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -24,16 +24,18 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [orden, setOrden] = useState("");
 
-  // const [dogPagina, setDogPagina] = useState(1);
-  // const [dogPorPagina, setDogPorPagina] = useState(8);
+  const [pagina, setPagina] = useState(1);
+  const [dogPorPagina ] = useState(8);
 
-  // const indexUltimoDog = dogPagina * dogPorPagina;
-  // const indexPrimerDog = indexUltimoDog - dogPorPagina;
-  // const currentDog = allDogs.slice(indexPrimerDog, indexUltimoDog);
+  console.log("ESTO ES EN HOME:",dogPorPagina)
 
-  // const paginado = (pageNumber) => {
-  //   setDogPagina(pageNumber);
-  // };
+  const indexUltimoDog = pagina * dogPorPagina; //8
+  const indexPrimerDog = indexUltimoDog - dogPorPagina;
+  const currentDog = allDogs.slice(indexPrimerDog, indexUltimoDog);
+
+  const paginado = (pageNumber) => {
+    setPagina(pageNumber);
+  };
 
   setTimeout(() => {
     setIsLoading(false);
@@ -46,6 +48,10 @@ export default function Home() {
   useEffect(() => {
     dispatch(getTemperament());
   }, [dispatch]);
+
+  useEffect(()=>{
+    setPagina(1)
+  },[allDogs])
 
   if (isLoading) {
     return (
@@ -88,79 +94,78 @@ export default function Home() {
     dispatch(filterCreate(e.target.value));
     setOrden(`Ordenado ${e.target.value}`);
   }
+  //--------------------------------------------------------------------------------------------
 
+  
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Dogs</h1>
-        <div className={styles.search}>
+      {/* <header className={styles.header}> */}
+      <h1 className={styles.title}>Dogs</h1>
+      <div className={styles.search}>
+        {" "}
+        <Search />{" "}
+      </div>
+
+      <div className={styles.create}>
+        <NavLink to="/Create">
           {" "}
-          <Search />{" "}
-        </div>
+          <button className={styles.buttonCreate}>Create dog breed</button>{" "}
+        </NavLink>
+      </div>
+      {/* </header> */}
+      {/* <div> */}
+      <div className={styles.navbar}>
+        <select
+          onChange={(e) => {
+            handleSort(e);
+          }}
+        >
+          <option value="">Orden ALfabetico</option>
+          <option value="ascendente">A-Z</option>
+          <option value="descendente">Z-A</option>
+        </select>
+        <select
+          onChange={(e) => {
+            handleSortPeso(e);
+          }}
+        >
+          <option value="">Peso</option>
+          <option value="ascendente">Ascendente</option>
+          <option value="descendente">Descendente</option>
+        </select>
+        <select onChange={(e) => handleTemperament(e)}>
+          <option value="All">Temperament Filter</option>
+          {allTemperament?.map((e) => (
+            <option key={e.name} value={e.name}>
+              {e.name}
+            </option>
+          ))}
+        </select>
+        <select onChange={(e) => handleCreated(e)}>
+          <option value="All">Dog breed filter</option>
+          <option value="Created">Dogs Created</option>
+          <option value="Api">Api</option>
+        </select>
+      </div>
 
-        <div className={styles.create}>
-          <NavLink to="/Create">
-            {" "}
-            <button className={styles.buttonCreate}>
-              Create dog breed
-            </button>{" "}
-          </NavLink>
-        </div>
-      </header>
-      <div>
-        <div className={styles.navbar}>
-          <select
-            onChange={(e) => {
-              handleSort(e);
-            }}
-          >
-            <option value="">Orden ALfabetico</option>
-            <option value="ascendente">A-Z</option>
-            <option value="descendente">Z-A</option>
-          </select>
-          <select
-            onChange={(e) => {
-              handleSortPeso(e);
-            }}
-          >
-            <option value="">Peso</option>
-            <option value="ascendente">Ascendente</option>
-            <option value="descendente">Descendente</option>
-          </select>
-          <select onChange={(e) => handleTemperament(e)}>
-            <option value="All">Temperament Filter</option>
-            {allTemperament?.map((e) => (
-              <option key={e.name} value={e.name}>
-                {e.name}
-              </option>
-            ))}
-          </select>
-          <select onChange={(e) => handleCreated(e)}>
-            <option value="All">Dog breed filter</option>
-            <option value="Created">Dogs Created</option>
-            <option value="Api">Api</option>
-          </select>
-        </div>
+      {/* <div className={styles.paginado}> */}
+      <Paginade
+        dogPorPagina={dogPorPagina}
+        allDogs={allDogs.length}
+        paginado={paginado}
+      />
+    
+      {/* </div> */}
 
-        {/* <div className={styles.paginado}>
-          <Paginado
-            dogPorPagina={dogPorPagina}
-            allDogs={allDogs.length}
-            paginado={paginado}
-          />
-        </div> */}
-
-        <div className={styles.dogsCard}>
-          {allDogs?.map((e) => {
-            return (
-              <div key={e.name}>
-                <ul>
+      <div className={styles.dogsCard}>
+        {currentDog?.map((e) => {
+          return (
+            <div key={e.name}>
+              <ul>
+                {" "}
+                <Link className={styles.linkName} to={`/home/${e.id}`}>
                   <DogCard
-                    name={
-                      <Link className={styles.linkName} to={`/home/${e.id}`}>
-                        {e.name}
-                      </Link>
-                    }
+                    name={e.name}
                     image={e.image}
                     peso={e.peso}
                     temperament={
@@ -168,13 +173,19 @@ export default function Home() {
                         ? e.temperamentos.map((e) => e.name)
                         : e.temperament
                     }
-                  />
-                </ul>
-              </div>
-            );
-          })}
-        </div>
+                  />{" "}
+                </Link>
+              </ul>
+            </div>
+          );
+        })}
       </div>
+      <Paginade
+        dogPorPagina={dogPorPagina}
+        allDogs={allDogs.length}
+        paginado={paginado}
+      />
+      {/* </div> */}
     </div>
   );
 }

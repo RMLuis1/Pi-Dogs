@@ -1,5 +1,5 @@
 .container{
-    background-color: black;
+    background-color: transparent;
 }
 
 .dogsCard{
@@ -84,7 +84,7 @@ top: 0;
 
 }
 
-/* .paginado {
+.paginado {
     margin-bottom: 30px;
 
-} */
+}
