@@ -1,5 +1,5 @@
-.div1 {
-    list-style: none;
+.h1 {
+    /* list-style: none;
     width: 800px;
     height: 350px;
     margin: 2rem auto;
@@ -7,19 +7,30 @@
     grid-template-columns: repeat(auto-fill, 240px);
     gap: 4re;
     justify-content: center;
-    background-color: none;
+    background-color: none; */
+  max-width: 500px;
+   /* margin-top: 150px; */
+    margin: auto;
+    height: auto;
+    height: 80%;
+    
 }
 
 .div2 {
-    text-align: center;
+    /* text-align: center;
     border: 3px solid rgb(28, 129, 124);
     background-color: transparent;
     border-radius: 10%;
     width: 550px;
     height: 770px;
     font-size: 18px;
-    margin-top: 50px;
+    margin-top: 50px; */
+ 
 
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+   margin-top: 100px;
 }
 
 .buttonVolver {
@@ -43,6 +54,31 @@
     background-color: #0e0a4b;
 }
 .img{
-    border-radius: 15px;
-    margin-top: 50px;
+    /* border-radius: 15px;
+    margin-top: 50px; */
+max-width: 700px;
+margin: 15px;
+height: auto;
+height: 80%;
+border-radius: 15px;
 }
+.detalles{
+    font-size: 1.5rem;
+    max-width: 400px;
+    margin: 15px;
+    height: auto;
+    height: 80%;
+   
+}
+.title{
+    margin-top: 0;
+}
+
+
+@media (max-width: 560px) {
+    .img, .detalles, .buttonVolver, .h1, .title {
+        width: 90%;
+        height: auto;
+    }
+}
+

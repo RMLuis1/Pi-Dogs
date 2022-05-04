@@ -33,40 +33,47 @@ export default function Dogs() {
 
   return (
     <div>
-      <NavLink to="/home">
-        <button className={styles.buttonVolver}>Go back</button>
-      </NavLink>
-      <h1>Detail of the dog breed</h1>
-      <div className={styles.div1}>
+      
+        <NavLink to="/home">
+          <button className={styles.buttonVolver}>Go back</button>
+        </NavLink>
+    
+      <div className={styles.h1}>
+        {" "}
+        <h1>Detail of the dog breed</h1>
+      </div>
+
+      <div>
         {dogsDetall.length > 0 ? (
           <div className={styles.div2}>
             <img
               className={styles.img}
-              width={450}
-              height={400}
+              // width={450}
+              // height={400}
               src={dogsDetall[0].image}
               alt="Image no Found"
             />
-            <h1>{dogsDetall[0].name}</h1>
-            <p>
-              <strong>Height: </strong> {dogsDetall[0].altura} Cm
-            </p>
-            <p>
-              <strong>Weight: </strong> {dogsDetall[0].peso} Kg
-            </p>
-            <p>
-              <strong>Years of life: </strong> {dogsDetall[0].añosDeVida} Years
-            </p>
-            <strong>Temperament: </strong>
-            {dogsDetall[0].temperament? 
-              <p>{dogsDetall[0].temperament}</p>
-             : dogsDetall[0].temperamentos.map((e) => {
-                return <p>{e.name}</p>;
-              })
-            
-            
-          }
-           
+            <div className={styles.detalles}>
+              <h1 className={styles.title}>{dogsDetall[0].name}</h1>
+              <p>
+                <strong>Height: </strong> {dogsDetall[0].altura} Cm
+              </p>
+              <p>
+                <strong>Weight: </strong> {dogsDetall[0].peso} Kg
+              </p>
+              <p>
+                <strong>Years of life: </strong> {dogsDetall[0].añosDeVida}{" "}
+                Years
+              </p>
+              <strong>Temperament: </strong>
+              {dogsDetall[0].temperament ? (
+                <p>{dogsDetall[0].temperament}</p>
+              ) : (
+                dogsDetall[0].temperamentos.map((e) => {
+                  return <p>{e.name}</p>;
+                })
+              )}
+            </div>
           </div>
         ) : (
           "Loading...."
