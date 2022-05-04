@@ -168,7 +168,6 @@ export default function Home() {
                         ? e.temperamentos.map((e) => e.name)
                         : e.temperament
                     }
-                
                   />
                 </ul>
               </div>

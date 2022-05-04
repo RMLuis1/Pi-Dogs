@@ -6,7 +6,7 @@ export default function LandingPage() {
   return (
     <div>
         <title className={styles.title} >Welcome!</title>
-      <h1>Soy Landing Page</h1>
+      <h1></h1>
       <NavLink to="/home" > <button className={styles.button} >Get in</button></NavLink> 
     </div>
   );
