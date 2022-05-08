@@ -86,7 +86,7 @@ router.get("/dogs", async (req, res) => {
         });
 
         if (dbDog) {
-          const dogBody = await hay.concat(dbDog);
+          const dogBody = await dbDog.concat(hay);
 
           res.status(200).send(dogBody);
         } else {

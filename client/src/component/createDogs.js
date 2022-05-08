@@ -23,6 +23,15 @@ export default function CreateDogs() {
   });
 
   const [inputError, setInputError] = useState({});
+  //----------------------------------------------------------------------------------------------------------
+  //! DELETED TEMPERAMENT
+  function handleDelete(e) {
+    setInput({
+      ...input,
+      temperament: input.temperament.filter((el) => el == e),
+    });
+  }
+
   //---------------------------------------------------------------------------------------------------------
   //! SELECT TEMPERAMENT
   function handleTemperament(e) {
@@ -304,7 +313,13 @@ export default function CreateDogs() {
               </select>
               <ul>
                 <li className={styles.input}>
-                  {input.temperament.map((e) => e + " ,")}{" "}
+                  {input.temperament.map((e) => (
+                    <p>
+                      {" "}
+                      {e}
+                      <button onClick={(e) => handleDelete(e)}>x</button>{" "}
+                    </p>
+                  ))}{" "}
                 </li>
               </ul>
             </div>

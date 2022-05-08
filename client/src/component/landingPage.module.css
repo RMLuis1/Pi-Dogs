@@ -8,7 +8,7 @@ padding: 70px;
 justify-content: left;
 font-size: 100px;
 }
-.button{
+/* .button{
     
         height: auto;
         width: 300px;
@@ -29,4 +29,51 @@ font-size: 100px;
 .button:hover {
     width: 320px;
     background-color: #3d4b70;
+} */
+
+.container{
+    height:100%;
+    position: relative;
+    perspective: 800px
 }
+
+.button{
+border: none;
+position:relative;
+background: none;
+padding: 30px 80px;
+display: inline-block;
+text-transform: uppercase;
+background: #cc0099;
+color:#fff;
+letter-spacing: 2px;
+font-size:1rem;
+font-weight: 800;
+transform-style: preserve-3d;
+outline: none;
+outline: 1px solid transparent;
+transition: all 0.5s ease-out;
+cursor: pointer;
+}
+
+.button::after{
+    content: "Button";
+    position: absolute;
+    padding: 30px 80px;
+    z-index: -1;
+    transition: all 0.5s ease-out;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top:-100%;
+    background: #990073;
+    transform-origin: 0% 100%;
+    transform: rotateX(90deg);
+}
+.button:hover{
+    transform: translateY(48px) rotateX(-90deg);
+}
+
+
+
+

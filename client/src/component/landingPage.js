@@ -7,7 +7,9 @@ export default function LandingPage() {
     <div>
         <title className={styles.title} >Welcome!</title>
       <h1></h1>
+      <div className={styles.container} >
       <NavLink to="/home" > <button className={styles.button} >Get in</button></NavLink> 
+      </div>
     </div>
   );
 }

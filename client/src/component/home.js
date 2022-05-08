@@ -170,7 +170,7 @@ export default function Home() {
                     peso={e.peso}
                     temperament={
                       e.temperamentos
-                        ? e.temperamentos.map((e) => e.name)
+                        ? e.temperamentos.map((e) => e.name + ", ")
                         : e.temperament
                     }
                   />{" "}
