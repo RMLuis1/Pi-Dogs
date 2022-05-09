@@ -10,20 +10,20 @@
     height: auto;
     width: 30px;
     font-size: 15px;
-    background-color: blueviolet;
+    background-color: rgba(100, 65, 20, 0.534);
     color: rgba(90, 72, 248, 0);
     line-height: 25px;
     border-radius: 10px;
-    border-color: #32c3d6;
+    border-color: #4e3510;
     cursor: pointer;
     transition: width 0.2s;
     
     margin-right: 3%;
-    color: rgb(6, 6, 61);
+    color: rgb(255, 255, 255);
 }
 .buttonpaginado:hover {
     width: 35px;
-    background-color: #3cb9cf;
+    background-color: #724121;
 }
 
 .respon{

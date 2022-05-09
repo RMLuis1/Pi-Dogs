@@ -33,14 +33,20 @@ export default function Dogs() {
 
   return (
     <div>
-      
-        <NavLink to="/home">
-          <button className={styles.buttonVolver}>Go back</button>
-        </NavLink>
-    
+      <img
+        className={styles.fondodeportada}
+        src="https://thumbs.dreamstime.com/b/patr%C3%B3n-impecable-con-rayas-punteadas-e-impresiones-realistas-de-la-pata-perro-fondo-plano-m%C3%ADnimo-huella-mascota-y-huesos-color-176649109.jpg"
+        alt="Not found"
+      />
+      <NavLink to="/home">
+        <button className={styles.buttonVolver}>Go back</button>
+      </NavLink>
+
       <div className={styles.h1}>
         {" "}
-        <h1>Detail of the dog breed</h1>
+        <h1 className={styles.entrada}>
+          DESCRIPTION OF THE DOG <span>&#160; </span>{" "}
+        </h1>
       </div>
 
       <div>
@@ -70,7 +76,7 @@ export default function Dogs() {
                 <p>{dogsDetall[0].temperament}</p>
               ) : (
                 dogsDetall[0].temperamentos.map((e) => {
-                  return <p>{e.name}</p>;
+                  return e.name + " ";
                 })
               )}
             </div>

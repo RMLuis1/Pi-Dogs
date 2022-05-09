@@ -1,3 +1,14 @@
+.fondodeportada {
+    height: 120%;
+
+    width: 100%;
+    /* max-width: max-content; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+}
+
 .h1 {
     /* list-style: none;
     width: 800px;
@@ -13,8 +24,45 @@
     margin: auto;
     height: auto;
     height: 80%;
+    font-size: 25px;
     
 }
+.entrada {
+    overflow: hidden;
+    font-family: monospace;
+    white-space: nowrap;
+    font-size: 2.4em;
+    color: black;
+    width: 450px;
+    border-right: 2px solid rgba(207, 173, 121, 0.87);
+    animation: animacionIntro 4.8s steps(60, end) infinite,
+        animacionBar 1s step-end infinite;
+}
+
+@keyframes animacionIntro {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 350px;
+    }
+}
+
+@keyframes animacionBar {
+
+    0%,
+    100% {
+        border-color: rgba(196, 196, 196, 0);
+    }
+
+    50% {
+        border-color: rgba(0, 0, 0, 0.87);
+    }
+
+}
+
+
 
 .div2 {
     /* text-align: center;
@@ -36,22 +84,21 @@
 .buttonVolver {
     height: auto;
     width: 300px;
-    font-size: 25px;
+    font-size: 30px;
     background-color: transparent;
 
     line-height: 26px;
     border-radius: 28px;
-    border-color: #32c3d6;
-    cursor: pointer;
+    border-color: #ffffff;
+        cursor: pointer;
     transition: width 0.2s;
     float: left;
     margin-right: 3%;
-    color: rgb(185, 185, 185);
-}
+    color: rgba(44, 23, 10, 0.938);}
 
 .buttonVolver:hover {
     width: 320px;
-    background-color: #0e0a4b;
+        background-color: #fdeda6;
 }
 .img{
     /* border-radius: 15px;
@@ -72,6 +119,7 @@ border-radius: 15px;
 }
 .title{
     margin-top: 0;
+   color:rgba(44, 23, 10, 0.938)
 }
 
 

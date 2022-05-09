@@ -5,9 +5,9 @@
     text-align: center;
     color: rgb(0, 0, 0);
     text-decoration: none;
-    background-color: rgb(128, 128, 128);
+    background-color: rgb(190, 164, 92);
     border-radius: 1rem;
-    border: 3px solid rgb(202, 202, 202);
+    border: 3px solid rgb(71, 55, 33);
     margin-top: 250px;
 }
 
@@ -18,7 +18,8 @@
 .name {
     justify-content: center;
     text-align: center;
-    text-shadow: 10px 9px 5px rgb(0, 0, 0);
+    text-shadow: 10px 9px 5px rgb(97, 82, 63);
+    font-size: 25px;
 }
 
 .peso{
@@ -26,7 +27,7 @@
     color: rgb(255, 255, 255);
     justify-content: center;
     text-align: center;
-    text-shadow: 10px 9px 5px rgb(0, 0, 0);
+    /* text-shadow: 10px 9px 5px rgb(0, 0, 0); */
 }
 .temperament {
     font-size: 20px;
@@ -37,7 +38,7 @@
     width: 290px;
     height: 30px;
     
-    text-shadow: 10px 9px 5px rgb(0, 0, 0);
+    /* text-shadow: 10px 9px 5px rgb(0, 0, 0); */
     overflow: hidden;
     text-overflow: ellipsis;
 }

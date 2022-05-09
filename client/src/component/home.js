@@ -99,8 +99,17 @@ export default function Home() {
   
   return (
     <div className={styles.container}>
+      <img
+        className={styles.fondodeportada}
+        src="https://thumbs.dreamstime.com/b/patr%C3%B3n-impecable-con-rayas-punteadas-e-impresiones-realistas-de-la-pata-perro-fondo-plano-m%C3%ADnimo-huella-mascota-y-huesos-color-176649109.jpg"
+        alt="Not found"
+      />
+
       {/* <header className={styles.header}> */}
-      <h1 className={styles.title}>Dogs</h1>
+      <div className={styles.titulos} > 
+      <h1 className={styles.entrada}>DOGS<span >&#160; </span> </h1> 
+      </div>
+      
       <div className={styles.search}>
         {" "}
         <Search />{" "}
@@ -116,6 +125,7 @@ export default function Home() {
       {/* <div> */}
       <div className={styles.navbar}>
         <select
+          className={styles.filtros}
           onChange={(e) => {
             handleSort(e);
           }}
@@ -125,6 +135,7 @@ export default function Home() {
           <option value="descendente">Z-A</option>
         </select>
         <select
+          className={styles.filtros}
           onChange={(e) => {
             handleSortPeso(e);
           }}
@@ -133,7 +144,10 @@ export default function Home() {
           <option value="ascendente">Ascendente</option>
           <option value="descendente">Descendente</option>
         </select>
-        <select onChange={(e) => handleTemperament(e)}>
+        <select
+          className={styles.filtros}
+          onChange={(e) => handleTemperament(e)}
+        >
           <option value="All">Temperament Filter</option>
           {allTemperament?.map((e) => (
             <option key={e.name} value={e.name}>
@@ -141,7 +155,7 @@ export default function Home() {
             </option>
           ))}
         </select>
-        <select onChange={(e) => handleCreated(e)}>
+        <select className={styles.filtros} onChange={(e) => handleCreated(e)}>
           <option value="All">Dog breed filter</option>
           <option value="Created">Dogs Created</option>
           <option value="Api">Api</option>
@@ -154,7 +168,7 @@ export default function Home() {
         allDogs={allDogs.length}
         paginado={paginado}
       />
-    
+
       {/* </div> */}
 
       <div className={styles.dogsCard}>

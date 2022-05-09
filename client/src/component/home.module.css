@@ -1,7 +1,17 @@
-.container{
-    background-color: transparent;
-}
+/* .container{
+    /* background-color: transparent;  */
+    /* background-image:url("https: //thumbs.dreamstime.com/z/patr%C3%B3n-impecable-con-rayas-punteadas-e-impresiones-realistas-de-la-pata-perro-fondo-plano-m%C3%ADnimo-huella-mascota-y-huesos-color-176649109.jpg") */
+/* } */ 
+.fondodeportada {
+    height: 100%;
 
+    width: 100%;
+    /* max-width: max-content; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+}
 .dogsCard{
     list-style: none;
     width: 80%;
@@ -21,18 +31,52 @@ height: 75px;
 margin:auto;
 top: 0;
 }
-.title{
-    color: rgb(8, 8, 8);
-    font-size: 40px;
-    line-height: 10px;
-    float: left;
+.titulos{
+margin: auto;
+display: table;
 }
+
+ .entrada {
+     overflow: hidden;
+     font-family: monospace;
+     white-space: nowrap;
+     font-size: 6.4em;
+     color:black;
+     width: 350px;
+     border-right: 2px solid rgba(207, 173, 121, 0.87);
+     animation: animacionIntro 4.8s steps(23, end) infinite,
+         animacionBar 1s step-end infinite;
+ }
+
+ @keyframes animacionIntro {
+     0% {
+         width: 0;
+     }
+
+     100% {
+         width: 350px;
+     }
+ }
+
+ @keyframes animacionBar {
+
+     0%,
+     100% {
+         border-color: rgba(196, 196, 196, 0);
+     }
+
+     50% {
+         border-color: rgba(0, 0, 0, 0.87);
+     }
+     
+ }
+
 .buttonCreate {
     height: auto;
     width: 290px;
     font-size: 30px;
     background-color: transparent;
-    color: rgba(90, 72, 248, 0);
+    color: rgba(44, 23, 10, 0.938);
     line-height: 26px;
     border-radius: 28px;
     border-color: #ffffff;
@@ -40,12 +84,13 @@ top: 0;
     transition: width 0.2s;
     float: right;
     margin-right: 3%;
-    color: rgb(6, 6, 61);
+    font-family: monospace;
+    /* color: rgb(6, 6, 61); */
 }
 
 .buttonCreate:hover {
     width: 300px;
-    background-color: #3cb9cf;
+    background-color: #fdeda6;
 }
 .search {
     display: inline-block;
@@ -56,6 +101,7 @@ top: 0;
     margin: 10px;
     margin-left: 300px;
     /* margin-top: 10px; */
+    /* font-family: monospace; */
 }
 .create {
     padding: 20px 20px;
@@ -64,6 +110,7 @@ top: 0;
     font-weight: bold;
     margin-right: 0;
     float: right;
+    /* font-family: monospace; */
 
 }
 
@@ -88,3 +135,19 @@ top: 0;
     margin-bottom: 30px;
 
 }
+.filtros{
+        background-color: rgba(100, 65, 20, 0.534);
+        border-radius: 15%;
+        border-color: black;
+        font-size: 30px;
+    color: white;
+    font-family: monospace;
+}
+.filtros:hover{
+    background-color: rgba(66, 39, 13, 0.863);
+}
+.filtros:focus{
+    color: #fdeda6;
+}
+
+
