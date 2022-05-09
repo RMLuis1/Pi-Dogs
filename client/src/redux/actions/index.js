@@ -7,8 +7,9 @@ export const GET_ALL_DOGS_NAME = "GET_ALL_DOGS_NAME";
 export const CREATE_DOGS = "CREATE_DOGS";
 export const FILTER_ALPHABETICALLY = "FILTER_ALPHABETICALLY";
 export const FILTER_WEIGHT = "FILTER_WEIGHT";
-export const FILTER_TEMPERAMENT="FILTER_TEMPERAMENT"
-export const FILTER_CREATE= "FILTER_CREATE"
+export const FILTER_TEMPERAMENT="FILTER_TEMPERAMENT";
+export const FILTER_CREATE= "FILTER_CREATE";
+export const GET_ALL_DOG_DELETED= "GET_ALL_DOG_DELETED";
 
 export const getDog = () => {
   return (dispatch) => {
@@ -112,6 +113,20 @@ export const createDogs = ({
     });
   };
 };
+
+export function getDogDeleted(id) {
+  return async function (dispatch) {
+    return await axios
+      .delete(`http://localhost:3001/dogs/${id}`)
+      .then((result) => {
+        return dispatch({
+          type: GET_ALL_DOG_DELETED,
+          payload: result.data,
+        });
+      });
+  };
+}
+
 
 
 

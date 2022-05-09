@@ -209,4 +209,14 @@ router.get("/temperament", async (req, res) => {
   }
 });
 
+router.delete("/dogs/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    Dog.findByPk(id).then((e) => e.destroy());
+    res.status(200).send("Dog Deleted!");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
