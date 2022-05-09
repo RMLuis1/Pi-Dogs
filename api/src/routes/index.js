@@ -7,6 +7,7 @@ const { API_KEY } = process.env;
 // Ejemplo: const authRouter = require('./auth.js');
 
 const router = Router();
+//instancia del router queda escuchando los reques y de ahi va a decir donde va a ir y que va hacer
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -129,7 +130,7 @@ router.get("/dogs/:id", async (req, res) => {
             peso: e.weight.metric,
             añosDeVida: e.life_span,
             image: e.image.url,
-            temperament: e.temperament,
+            temperament: e.temperament ? e.temperament : "No temperament !!",
           };
         });
         console.log(dog1);

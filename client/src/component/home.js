@@ -107,7 +107,7 @@ export default function Home() {
 
       {/* <header className={styles.header}> */}
       <div className={styles.titulos} > 
-      <h1 className={styles.entrada}>DOGS<span >&#160; </span> </h1> 
+      <h1 className={styles.entrada}>DOGS....<span >&#160; </span> </h1> 
       </div>
       
       <div className={styles.search}>

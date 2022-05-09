@@ -73,7 +73,7 @@ export default function Dogs() {
               </p>
               <strong>Temperament: </strong>
               {dogsDetall[0].temperament ? (
-                <p>{dogsDetall[0].temperament}</p>
+                <p>{dogsDetall[0].temperament? dogsDetall[0].temperament : "No Temperament!" }</p> 
               ) : (
                 dogsDetall[0].temperamentos.map((e) => {
                   return e.name + " ";
