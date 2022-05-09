@@ -70,7 +70,10 @@ export default function CreateDogs() {
       !input.temperament
     ) {
       return alert("Todos los campos son obligatorios");
-    } else {
+    } else if(inputError){
+      return alert("Campos invalidos")
+    }
+     else {
       dispatch(createDogs(input));
       alert("Dog breed created successfully!");
       setInput({
@@ -104,38 +107,31 @@ export default function CreateDogs() {
       error.name = "Name is required";
     } else if (!/^[A-Z]+$/i.test(input.name)) {
       error.name = "Name is invalid";
-    }
-    if (!input.alturaMin) {
+    } else if (!input.alturaMin) {
       error.alturaMin = "Altura Minima is required";
     } else if (input.alturaMin < 1 || input.alturaMin > 40) {
       error.alturaMin = "Altura Minima is number 1 - 40";
-    }
-    if (!input.alturaMax) {
+    } else if (!input.alturaMax) {
       error.alturaMax = "Altura Maxima is required";
     } else if (input.alturaMax < 41 || input.alturaMax > 100) {
       error.alturaMax = "Altura Maxima is number 41 - 100";
-    }
-    if (!input.pesoMin) {
+    } else if (!input.pesoMin) {
       error.pesoMin = "Peso Minimo is required";
     } else if (input.pesoMin < 1 || input.pesoMin > 40) {
       error.pesoMin = "Peso Minimo is number 1 - 40";
-    }
-    if (!input.pesoMax) {
+    } else if (!input.pesoMax) {
       error.pesoMax = "Peso Maximo is required";
     } else if (input.pesoMax < 41 || input.pesoMax > 100) {
       error.pesoMax = "Peso Maximo is number 41 - 100";
-    }
-    if (!input.añosMin) {
+    } else if (!input.añosMin) {
       error.añosMin = "Años minimo de vida is required";
     } else if (input.añosMin < 1 || input.añosMin > 15) {
       error.añosMin = "Años minimo de vida is number 1 - 15";
-    }
-    if (!input.añosMax) {
+    } else if (!input.añosMax) {
       error.añosMax = "Años Maximo de vida is required";
     } else if (input.añosMax < 16 || input.añosMax > 100) {
       error.añosMax = "Años Maximo de vida is number 16 - 100";
     }
-
     return error;
   }
   //--------------------------------------------------------------------------------------------------------
