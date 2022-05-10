@@ -6,7 +6,7 @@ font-size:300%;
 gap: 40px;
 padding: 70px;
 justify-content: left;
-font-size: 100px;
+font-size: 150px;
 }
 /* .button{
     
@@ -40,15 +40,18 @@ font-size: 100px;
 .button{
 border: none;
 position:relative;
+top:450px;
 background: none;
 padding: 30px 80px;
+width: 500px;
 display: inline-block;
 text-transform: uppercase;
-background: #cc0099;
+background: #866841;
 color:#fff;
 letter-spacing: 2px;
-font-size:1rem;
+font-size:1.5rem;
 font-weight: 800;
+border-radius: 5%;
 transform-style: preserve-3d;
 outline: none;
 outline: 1px solid transparent;
@@ -57,8 +60,9 @@ cursor: pointer;
 }
 
 .button::after{
-    content: "Button";
+    content: "Click";
     position: absolute;
+    font-size: 40px;
     padding: 30px 80px;
     z-index: -1;
     transition: all 0.5s ease-out;
@@ -66,9 +70,10 @@ cursor: pointer;
     height: 100%;
     left: 0;
     top:-100%;
-    background: #990073;
+    background: #382a0c;
     transform-origin: 0% 100%;
     transform: rotateX(90deg);
+    border-radius: 5%;
 }
 .button:hover{
     transform: translateY(48px) rotateX(-90deg);

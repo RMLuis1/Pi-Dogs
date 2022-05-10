@@ -106,10 +106,12 @@ export default function Home() {
       />
 
       {/* <header className={styles.header}> */}
-      <div className={styles.titulos} > 
-      <h1 className={styles.entrada}>DOGS....<span >&#160; </span> </h1> 
+      <div className={styles.titulos}>
+        <h1 className={styles.entrada}>
+          DOGS....<span>&#160; </span>{" "}
+        </h1>
       </div>
-      
+
       <div className={styles.search}>
         {" "}
         <Search />{" "}
@@ -130,7 +132,7 @@ export default function Home() {
             handleSort(e);
           }}
         >
-          <option value="">Orden ALfabetico</option>
+          <option value="">Order alphabetically</option>
           <option value="ascendente">A-Z</option>
           <option value="descendente">Z-A</option>
         </select>
@@ -140,9 +142,9 @@ export default function Home() {
             handleSortPeso(e);
           }}
         >
-          <option value="">Peso</option>
-          <option value="ascendente">Ascendente</option>
-          <option value="descendente">Descendente</option>
+          <option value="">Sort by Weight</option>
+          <option value="ascendente">upward</option>
+          <option value="descendente">descending</option>
         </select>
         <select
           className={styles.filtros}

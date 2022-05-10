@@ -57,15 +57,16 @@ export default function Dogs() {
           DESCRIPTION OF THE DOG <span>&#160; </span>{" "}
         </h1>
       </div>
-      <div>
+      <div >
         {!Number(dogsDetall[0].id) ? (
-          <Link to="/home" >
-          <button
+          // <Link to="/home" >
+          <button className={styles.remover}
             value={dogsDetall[0].id}
             onClick={(e) => handleDeleted(e)}
           >
-            x
-          </button> </Link >
+            Remove
+          </button> 
+          /* </Link > */
         ) : (
           " "
         )}

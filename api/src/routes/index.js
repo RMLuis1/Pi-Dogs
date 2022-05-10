@@ -152,7 +152,9 @@ router.post("/dog", async (req, res) => {
       altura: altura,
       peso: peso,
       añosDeVida: añosDeVida,
-      image: image,
+      image: image
+        ? image
+        : "https://media.istockphoto.com/photos/maltese-dog-puppy-picture-id961585286?k=20&m=961585286&s=612x612&w=0&h=9pNSBbt1WWTUXRHqzT57FEfh7WoAuWFGIqgLNikwty0=",
     });
     const dogTemperamento = await Temperamento.findAll({
       where: {

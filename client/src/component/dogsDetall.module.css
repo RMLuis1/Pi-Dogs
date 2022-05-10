@@ -9,6 +9,25 @@
     z-index: -100;
 }
 
+.remover{
+    height: auto;
+        width: 300px;
+        font-size: 35px;
+        background-color: transparent;
+    
+        line-height: 26px;
+        border-radius: 28px;
+        border-color: #ffffff;
+        cursor: pointer;
+        transition: width 0.2s;
+        float: right;
+        margin-right: 3%;
+        color: rgba(44, 23, 10, 0.938);
+}
+.remover:hover{
+    width: 320px;
+        background-color: #fdeda6;
+}
 .h1 {
     /* list-style: none;
     width: 800px;
@@ -33,10 +52,10 @@
     white-space: nowrap;
     font-size: 2.4em;
     color: black;
-    width: 450px;
+    width: 850px;
     border-right: 2px solid rgba(207, 173, 121, 0.87);
-    animation: animacionIntro 4.8s steps(60, end) infinite,
-        animacionBar 1s step-end infinite;
+    animation: animacionIntro 6.8s steps(60, end) infinite,
+        animacionBar 2s step-end infinite;
 }
 
 @keyframes animacionIntro {
@@ -45,7 +64,7 @@
     }
 
     100% {
-        width: 350px;
+        width: 750px;
     }
 }
 

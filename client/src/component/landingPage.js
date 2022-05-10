@@ -7,7 +7,7 @@ export default function LandingPage() {
     <div>
       <img
         className={styles.fondodeportada}
-        src=""
+        src="https://www.publicdomainpictures.net/pictures/400000/nahled/hunde-vintage-kunst-alt-1619901154yXZ.jpg"
         alt="Not found"
       />
 

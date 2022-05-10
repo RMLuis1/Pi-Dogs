@@ -66,14 +66,13 @@ export default function CreateDogs() {
       !input.pesoMax ||
       !input.añosMin ||
       !input.añosMax ||
-      !input.image ||
+      // !input.image ||
       !input.temperament
     ) {
       return alert("Todos los campos son obligatorios");
-    } else if(inputError){
-      return alert("Campos invalidos")
-    }
-     else {
+    } else if (inputError.length > 0) {
+      return alert("Campos invalidos"), console.log(inputError);
+    } else {
       dispatch(createDogs(input));
       alert("Dog breed created successfully!");
       setInput({
@@ -132,198 +131,214 @@ export default function CreateDogs() {
     } else if (input.añosMax < 16 || input.añosMax > 100) {
       error.añosMax = "Años Maximo de vida is number 16 - 100";
     }
+
     return error;
   }
   //--------------------------------------------------------------------------------------------------------
 
   return (
-    <div className={styles.divM}>
-      <Link to="/home">
-        <button className={styles.volver}>Go back</button>
-      </Link>
-      <br />
-      <h1 className={styles.h1t}>Create </h1>
-      <div className={styles.div2}>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <labe>Name: </labe>
-            <input
-              className={
-                (inputError.name && styles.inputdanger) || styles.input
-              }
-              type="text"
-              value={input.name}
-              name="name"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-            />
-            {inputError.name && (
-              <p className={styles.danger}>{inputError.name}</p>
-            )}
-          </div>
+    <div>
+      <img
+        className={styles.fondodeportada}
+        src="https://i.pinimg.com/736x/20/79/97/207997fbb82ca8cff4b5d549a9164397.jpg"
+        alt="Not found"
+      />
+      <div className={styles.divM}>
+        <Link to="/home">
+          <button className={styles.volver}>Go back</button>
+        </Link>
+        <br />
+        <h1 className={styles.h1t}>Create </h1>
+        <div className={styles.div2}>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Name: </label>
+              <input
+                className={
+                  (inputError.name && styles.inputdanger) || styles.input
+                }
+                type="text"
+                value={input.name}
+                name="name"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                placeholder="Enter name"
+              />
+              {inputError.name && (
+                <p className={styles.danger}>{inputError.name}</p>
+              )}
+            </div>
 
-          <div>
             <div>
-              <labe>Altura Minima: </labe>
-              <input
-                className={
-                  (inputError.alturaMin && styles.inputdanger) || styles.input
-                }
-                type="text"
-                name="alturaMin"
-                value={input.alturaMin}
-                onChange={handleChange}
-                min="1"
-                max="40"
-              />
-              {inputError.alturaMin && (
-                <p className={styles.danger}>{inputError.alturaMin}</p>
-              )}
+              <div>
+                <label>Maximum height: </label>
+                <input
+                  className={
+                    (inputError.alturaMin && styles.inputdanger) || styles.input
+                  }
+                  type="text"
+                  name="alturaMin"
+                  value={input.alturaMin}
+                  onChange={handleChange}
+                  min="1"
+                  max="40"
+                  placeholder="Number from 1 to 49"
+                />
+                {inputError.alturaMin && (
+                  <p className={styles.danger}>{inputError.alturaMin}</p>
+                )}
+              </div>
             </div>
-          </div>
-          <div>
             <div>
-              <labe>Altura Maxima: </labe>
-              <input
-                className={
-                  (inputError.alturaMax && styles.inputdanger) || styles.input
-                }
-                type="text"
-                name="alturaMax"
-                value={input.alturaMax}
-                min="41"
-                max="100"
-                onChange={handleChange}
-              />
-              {inputError.alturaMax && (
-                <p className={styles.danger}>{inputError.alturaMax}</p>
-              )}
+              <div>
+                <label>Minimun height: </label>
+                <input
+                  className={
+                    (inputError.alturaMax && styles.inputdanger) || styles.input
+                  }
+                  type="text"
+                  name="alturaMax"
+                  value={input.alturaMax}
+                  min="41"
+                  max="100"
+                  onChange={handleChange}
+                  placeholder="Number from 41 to 100"
+                />
+                {inputError.alturaMax && (
+                  <p className={styles.danger}>{inputError.alturaMax}</p>
+                )}
+              </div>
             </div>
-          </div>
 
-          <div>
             <div>
-              <labe>Peso Mainimo: </labe>
-              <input
-                className={
-                  (inputError.pesoMin && styles.inputdanger) || styles.input
-                }
-                type="text"
-                name="pesoMin"
-                value={input.pesoMin}
-                min="1"
-                max="40"
-                onChange={handleChange}
-              />
-              {inputError.pesoMin && (
-                <p className={styles.danger}>{inputError.pesoMin}</p>
-              )}
+              <div>
+                <label>Minimum weight: </label>
+                <input
+                  className={
+                    (inputError.pesoMin && styles.inputdanger) || styles.input
+                  }
+                  type="text"
+                  name="pesoMin"
+                  value={input.pesoMin}
+                  min="1"
+                  max="40"
+                  onChange={handleChange}
+                  placeholder="Number from 1 to 40"
+                />
+                {inputError.pesoMin && (
+                  <p className={styles.danger}>{inputError.pesoMin}</p>
+                )}
+              </div>
             </div>
-          </div>
-          <div>
             <div>
-              <labe>Peso Maximo: </labe>
-              <input
-                className={
-                  (inputError.pesoMax && styles.inputdanger) || styles.input
-                }
-                type="text"
-                name="pesoMax"
-                min="41"
-                max="100"
-                value={input.pesoMax}
-                onChange={handleChange}
-              />
-              {inputError.pesoMax && (
-                <p className={styles.danger}>{inputError.pesoMax}</p>
-              )}
+              <div>
+                <label>Maximum weight: </label>
+                <input
+                  className={
+                    (inputError.pesoMax && styles.inputdanger) || styles.input
+                  }
+                  type="text"
+                  name="pesoMax"
+                  min="41"
+                  max="100"
+                  value={input.pesoMax}
+                  onChange={handleChange}
+                  placeholder="Number from 41 to 100"
+                />
+                {inputError.pesoMax && (
+                  <p className={styles.danger}>{inputError.pesoMax}</p>
+                )}
+              </div>
             </div>
-          </div>
-          <div>
             <div>
-              <labe>Años de vida Minimo: </labe>
-              <input
-                className={
-                  (inputError.añosMin && styles.inputdanger) || styles.input
-                }
-                type="text"
-                name="añosMin"
-                value={input.añosMin}
-                min="1"
-                max="15"
-                onChange={handleChange}
-              />
-              {inputError.añosMin && (
-                <p className={styles.danger}>{inputError.añosMin}</p>
-              )}
+              <div>
+                <label>Minimum years of life: </label>
+                <input
+                  className={
+                    (inputError.añosMin && styles.inputdanger) || styles.input
+                  }
+                  type="text"
+                  name="añosMin"
+                  value={input.añosMin}
+                  min="1"
+                  max="15"
+                  onChange={handleChange}
+                  placeholder="Number from 1 to 15"
+                />
+                {inputError.añosMin && (
+                  <p className={styles.danger}>{inputError.añosMin}</p>
+                )}
+              </div>
             </div>
-          </div>
-          <div>
             <div>
-              <labe>Años de vida Maximo: </labe>
-              <input
-                className={
-                  (inputError.añosMax && styles.inputdanger) || styles.input
-                }
-                type="text"
-                name="añosMax"
-                value={input.añosMax}
-                min="16"
-                max="100"
-                onChange={handleChange}
-              />
-              {inputError.añosMax && (
-                <p className={styles.danger}>{inputError.añosMax}</p>
-              )}
+              <div>
+                <label>Maximum years of life: </label>
+                <input
+                  className={
+                    (inputError.añosMax && styles.inputdanger) || styles.input
+                  }
+                  type="text"
+                  name="añosMax"
+                  value={input.añosMax}
+                  min="16"
+                  max="100"
+                  onChange={handleChange}
+                  placeholder="Number from 16 to 100 "
+                />
+                {inputError.añosMax && (
+                  <p className={styles.danger}>{inputError.añosMax}</p>
+                )}
+              </div>
             </div>
-          </div>
-          <div>
             <div>
-              <labe>Image </labe>
-              <input
-                className={
-                  (inputError.image && styles.inputdanger) || styles.input
-                }
-                onChange={handleChange}
-                type="text"
-                name="image"
-                value={input.image}
-              />
+              <div>
+                <label>Image </label>
+                <input
+                  className={
+                    (inputError.image && styles.inputdanger) || styles.input
+                  }
+                  onChange={handleChange}
+                  type="text"
+                  name="image"
+                  value={input.image}
+                  placeholder="http:www.imagen.com"
+                />
+              </div>
             </div>
-          </div>
-          <div>
             <div>
-              <labe>Temperamentos </labe>
-              <select
-                className={styles.input}
-                onChange={(e) => handleTemperament(e)}
-              >
-                {allTemperament?.map((e) => {
-                  return (
-                    <option value={e.name} key={e.id} multiple="multiple">
-                      {e.name}
-                    </option>
-                  );
-                })}
-              </select>
-              <ul>
-                <li className={styles.input}>
-                  {input.temperament.map((e) => (
-                    <p>
-                      {" "}
-                      {e}
-                      <button onClick={(e) => handleDelete(e)}>x</button>{" "}
-                    </p>
-                  ))}{" "}
-                </li>
-              </ul>
+              <div>
+                <label>Temperaments: </label>
+                <select
+                  className={styles.input}
+                  onChange={(e) => handleTemperament(e)}
+                >
+                  {allTemperament?.map((e) => {
+                    return (
+                      <option value={e.name} key={e.id} multiple="multiple">
+                        {e.name}
+                      </option>
+                    );
+                  })}
+                </select>
+                <ul>
+                  <li className={styles.input}>
+                    {input.temperament.map((e) => (
+                      <p>
+                        {" "}
+                        {e}
+                        <button onClick={(e) => handleDelete(e)}>x</button>{" "}
+                      </p>
+                    ))}{" "}
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <button className={styles.submit} type="submit">
-            Crete Dogs
-          </button>
-        </form>
+            <button className={styles.submit} type="submit">
+              Crete Dogs
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
