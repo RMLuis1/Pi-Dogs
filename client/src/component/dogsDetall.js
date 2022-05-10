@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDogID , getDogDeleted, getDog} from "../redux/actions";
+import { getDogID, getDogDeleted, getDog, editDogs } from "../redux/actions";
 import { Spinner } from "./Snipper";
 import styles from "./dogsDetall.module.css";
 
@@ -17,17 +17,26 @@ export default function Dogs() {
     dispatch(getDogID(id));
   }, [id, dispatch]);
 
- 
   setTimeout(() => {
     setIsLoading(false);
   }, 4000);
- 
-  function handleDeleted(e){
+
+  function handleDeleted(e) {
     e.preventDefault();
-    dispatch(getDogDeleted(e.target.value))
-    alert("Dog Borrado exitosamente")
+    dispatch(getDogDeleted(e.target.value));
+    alert("Dog Borrado exitosamente");
     navigate("/home");
   }
+
+  //----------------------------------------------------------------------------------
+  //!funcion para editar
+  // function handleEdit(e) {
+  //   e.preventDefault();
+  //   dispatch(editDogs(e.target.value));
+  //   alert("Dog Editado exitosamente");
+  //   dispatch(getDogID(id));
+  // }
+  //---------------------------------------------------------------------------------------
 
   const dogsDetall = useSelector((state) => state.detallDog);
   console.log("ESTO ES DETALL: ", dogsDetall);
@@ -50,27 +59,44 @@ export default function Dogs() {
       <NavLink to="/home">
         <button className={styles.buttonVolver}>Go back</button>
       </NavLink>
-
       <div className={styles.h1}>
         {" "}
         <h1 className={styles.entrada}>
           DESCRIPTION OF THE DOG <span>&#160; </span>{" "}
         </h1>
       </div>
-      <div >
+      <div>
         {!Number(dogsDetall[0].id) ? (
           // <Link to="/home" >
-          <button className={styles.remover}
+          <button
+            className={styles.remover}
             value={dogsDetall[0].id}
             onClick={(e) => handleDeleted(e)}
           >
             Remove
-          </button> 
-          /* </Link > */
+          </button>
         ) : (
+          /* </Link > */
           " "
         )}
       </div>
+      //-------------------------------------------------------------------------------
+      /*seguir revisando */
+      {/* <button onClick={() => validate=true }>Editar</button>,
+      <div>
+         {  
+         validate ? (
+          <label>
+            Name:<input></input>
+          </label>
+        ) : (
+          ""
+        )
+        
+        }
+      </div> */}
+      /*seguir revisando */
+      //------------------------------------------------------------------------------
       <div>
         {dogsDetall.length > 0 ? (
           <div className={styles.div2}>

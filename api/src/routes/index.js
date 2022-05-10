@@ -221,4 +221,21 @@ router.delete("/dogs/:id", async (req, res) => {
   }
 });
 
+router.put("/dogs/:id", async (req, res)=>{
+const {id}= req.params;
+const {name}= req.body;
+try{
+  Dog.findByPk(id).then((e)=> e.update({
+    name: name
+  }))
+  res.status(200).send("Editado exitosamente")
+} catch(error){
+console.log(error)
+}
+
+})
+
+
+
+
 module.exports = router;

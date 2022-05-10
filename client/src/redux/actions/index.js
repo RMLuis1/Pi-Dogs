@@ -7,9 +7,10 @@ export const GET_ALL_DOGS_NAME = "GET_ALL_DOGS_NAME";
 export const CREATE_DOGS = "CREATE_DOGS";
 export const FILTER_ALPHABETICALLY = "FILTER_ALPHABETICALLY";
 export const FILTER_WEIGHT = "FILTER_WEIGHT";
-export const FILTER_TEMPERAMENT="FILTER_TEMPERAMENT";
-export const FILTER_CREATE= "FILTER_CREATE";
-export const GET_ALL_DOG_DELETED= "GET_ALL_DOG_DELETED";
+export const FILTER_TEMPERAMENT = "FILTER_TEMPERAMENT";
+export const FILTER_CREATE = "FILTER_CREATE";
+export const GET_ALL_DOG_DELETED = "GET_ALL_DOG_DELETED";
+export const EDIT_DOG = "EDIT_DOG";
 
 export const getDog = () => {
   return (dispatch) => {
@@ -106,7 +107,7 @@ export const createDogs = ({
       peso: `${pesoMin} - ${pesoMax}`,
       añosDeVida: `${añosMin} - ${añosMax}`,
       image: image,
-      nameTemp:temperament
+      nameTemp: temperament,
     });
     dispatch({
       type: CREATE_DOGS,
@@ -126,9 +127,19 @@ export function getDogDeleted(id) {
       });
   };
 }
-
-
-
+//-----------------------------------------------------------------------------
+//todavia falta revisar
+export const editDogs = (id, { name }) => {
+  return async (dispatch) => {
+    await axios.put(`http://localhost:3001/dog/${id}`, {
+      name: name,
+    });
+    dispatch({
+      type: EDIT_DOG,
+    });
+  };
+};
+//-------------------------------------------------------------------------------------
 
 export function filterAlphabetically(payload) {
   return {
@@ -137,26 +148,23 @@ export function filterAlphabetically(payload) {
   };
 }
 
-export function filterWeight(payload){
+export function filterWeight(payload) {
   return {
     type: "FILTER_WEIGHT",
-    payload
-  }
+    payload,
+  };
 }
 
-export function filterTemperament(payload){
+export function filterTemperament(payload) {
   return {
     type: "FILTER_TEMPERAMENT",
-    payload
-  }
+    payload,
+  };
 }
 
-export function filterCreate(payload){
+export function filterCreate(payload) {
   return {
     type: "FILTER_CREATE",
-    payload
-  }
+    payload,
+  };
 }
-
-
-
