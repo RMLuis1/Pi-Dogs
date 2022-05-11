@@ -101,24 +101,38 @@ export default function Reducer(state = initialState, action) {
       const temperam =
         action.payload === "All"
           ? filterTemper //filterTemper.filter((e) => e.temperaments.length > 0)
-          : filterTemper.filter((e) => {
-              return e.temperament?.includes(action.payload)
-            });
+          : filterTemper
+              .filter(
+                (e) =>
+                  //  e.temperament?.includes(action.payload)
+                  e.temperamentos
+                    ? e.temperamentos
+                        .map((e) => e.name)
+                        .includes(action.payload)
+                    : "",
+                console.log("ES LO QUE LLEGA DE PAYOAD", action.payload)
+              )
+              .concat(
+                filterTemper.filter((e) =>
+                  e.temperament?.includes(action.payload)
+                )
+              );
+      console.log("ESTO ES EL FILTER: ", temperam);
       return {
         ...state,
         dogs: temperam,
       };
-      
+
     case FILTER_CREATE:
-      let db= state.dogs2;
+      let db = state.dogs2;
       let filter =
         action.payload === "Created"
           ? db.filter((e) => !Number(e.id))
           : db.filter((e) => Number(e.id));
       return {
         ...state,
-        dogs: action.payload === "All"? state.dogs2 : filter
-      }
+        dogs: action.payload === "All" ? state.dogs2 : filter,
+      };
 
     default:
       return state;
