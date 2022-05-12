@@ -221,21 +221,31 @@ router.delete("/dogs/:id", async (req, res) => {
   }
 });
 
-router.put("/dogs/:id", async (req, res)=>{
-const {id}= req.params;
-const {name}= req.body;
-try{
-  Dog.findByPk(id).then((e)=> e.update({
-    name: name
-  }))
-  res.status(200).send("Editado exitosamente")
-} catch(error){
-console.log(error)
-}
+router.put("/dogs/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  try {
+    Dog.findByPk(id).then((e) =>
+      e.update({
+        name: name,
+      })
+    );
+    res.status(200).send("Editado exitosamente");
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-})
-
-
-
+router.post("/temperament", async (req, res) => {
+  try {
+    const { name } = req.body;
+    const temperaments = await Temperamento.findOrCreate({
+      where: { name },
+    });
+    if (temperaments) res.status(200).json({ msg: "Temperament created" });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;

@@ -22,14 +22,15 @@ export default function CreateDogs() {
     temperament: [],
   });
 
-  const [inputError, setInputError] = useState({});
+  const [error, setError] = useState({});
   //----------------------------------------------------------------------------------------------------------
   //! DELETED TEMPERAMENT
   function handleDelete(e) {
     setInput({
       ...input,
-      temperament: input.temperament.filter((el) => el == e),
+      temperament: input.temperament.filter((el) => el !== e.target.value),
     });
+    console.log("ESTO ES DELET", e);
   }
 
   //---------------------------------------------------------------------------------------------------------
@@ -37,7 +38,9 @@ export default function CreateDogs() {
   function handleTemperament(e) {
     setInput({
       ...input,
-      temperament: [...input.temperament, e.target.value],
+      temperament: input.temperament.includes(e.target.value)
+        ? [...input.temperament]
+        : [...input.temperament, e.target.value],
     });
   }
   //---------------------------------------------------------------------------------------------------------
@@ -49,7 +52,7 @@ export default function CreateDogs() {
         [e.target.name]: e.target.value,
       };
       const errors = validate(newInput);
-      setInputError(errors);
+      setError(errors);
       return newInput;
     });
     console.log(input);
@@ -67,11 +70,30 @@ export default function CreateDogs() {
       !input.añosMin ||
       !input.añosMax ||
       // !input.image ||
-      !input.temperament
+      !input.temperament.length
     ) {
       return alert("Todos los campos son obligatorios");
-    } else if (inputError.length > 0) {
-      return alert("Campos invalidos"), console.log(inputError);
+    }
+    if (error.name) {
+      return alert("Name invalidos"), console.log(error);
+    }
+    if (error.alturaMin) {
+      return alert("Altura Minima invalidos"), console.log(error);
+    }
+    if (error.alturaMax) {
+      return alert("Altura Maxima invalidos"), console.log(error);
+    }
+    if (error.pesoMin) {
+      return alert("Peso Minimo invalidos"), console.log(error);
+    }
+    if (error.pesoMax) {
+      return alert("Peso Maximo invalidos"), console.log(error);
+    }
+    if (error.añosMin) {
+      return alert("Años Minimo invalidos"), console.log(error);
+    }
+    if (error.añosMax) {
+      return alert("Años Maaximo invalidos"), console.log(error);
     } else {
       dispatch(createDogs(input));
       alert("Dog breed created successfully!");
@@ -87,6 +109,7 @@ export default function CreateDogs() {
         image: "",
         temperament: [],
       });
+      setError({});
     }
   }
   //---------------------------------------------------------------------------------------------------------
@@ -131,7 +154,7 @@ export default function CreateDogs() {
     } else if (input.añosMax < 16 || input.añosMax > 100) {
       error.añosMax = "Años Maximo de vida is number 16 - 100";
     }
-
+    console.log("ESTO ES ERROR!!!!", error);
     return error;
   }
   //--------------------------------------------------------------------------------------------------------
@@ -154,9 +177,7 @@ export default function CreateDogs() {
             <div>
               <label>Name: </label>
               <input
-                className={
-                  (inputError.name && styles.inputdanger) || styles.input
-                }
+                className={(error.name && styles.inputdanger) || styles.input}
                 type="text"
                 value={input.name}
                 name="name"
@@ -165,9 +186,7 @@ export default function CreateDogs() {
                 }}
                 placeholder="Enter name"
               />
-              {inputError.name && (
-                <p className={styles.danger}>{inputError.name}</p>
-              )}
+              {error.name && <p className={styles.danger}>{error.name}</p>}
             </div>
 
             <div>
@@ -175,7 +194,7 @@ export default function CreateDogs() {
                 <label>Maximum height: </label>
                 <input
                   className={
-                    (inputError.alturaMin && styles.inputdanger) || styles.input
+                    (error.alturaMin && styles.inputdanger) || styles.input
                   }
                   type="text"
                   name="alturaMin"
@@ -185,8 +204,8 @@ export default function CreateDogs() {
                   max="40"
                   placeholder="Number from 1 to 49"
                 />
-                {inputError.alturaMin && (
-                  <p className={styles.danger}>{inputError.alturaMin}</p>
+                {error.alturaMin && (
+                  <p className={styles.danger}>{error.alturaMin}</p>
                 )}
               </div>
             </div>
@@ -195,7 +214,7 @@ export default function CreateDogs() {
                 <label>Minimun height: </label>
                 <input
                   className={
-                    (inputError.alturaMax && styles.inputdanger) || styles.input
+                    (error.alturaMax && styles.inputdanger) || styles.input
                   }
                   type="text"
                   name="alturaMax"
@@ -205,8 +224,8 @@ export default function CreateDogs() {
                   onChange={handleChange}
                   placeholder="Number from 41 to 100"
                 />
-                {inputError.alturaMax && (
-                  <p className={styles.danger}>{inputError.alturaMax}</p>
+                {error.alturaMax && (
+                  <p className={styles.danger}>{error.alturaMax}</p>
                 )}
               </div>
             </div>
@@ -216,7 +235,7 @@ export default function CreateDogs() {
                 <label>Minimum weight: </label>
                 <input
                   className={
-                    (inputError.pesoMin && styles.inputdanger) || styles.input
+                    (error.pesoMin && styles.inputdanger) || styles.input
                   }
                   type="text"
                   name="pesoMin"
@@ -226,8 +245,8 @@ export default function CreateDogs() {
                   onChange={handleChange}
                   placeholder="Number from 1 to 40"
                 />
-                {inputError.pesoMin && (
-                  <p className={styles.danger}>{inputError.pesoMin}</p>
+                {error.pesoMin && (
+                  <p className={styles.danger}>{error.pesoMin}</p>
                 )}
               </div>
             </div>
@@ -236,7 +255,7 @@ export default function CreateDogs() {
                 <label>Maximum weight: </label>
                 <input
                   className={
-                    (inputError.pesoMax && styles.inputdanger) || styles.input
+                    (error.pesoMax && styles.inputdanger) || styles.input
                   }
                   type="text"
                   name="pesoMax"
@@ -246,8 +265,8 @@ export default function CreateDogs() {
                   onChange={handleChange}
                   placeholder="Number from 41 to 100"
                 />
-                {inputError.pesoMax && (
-                  <p className={styles.danger}>{inputError.pesoMax}</p>
+                {error.pesoMax && (
+                  <p className={styles.danger}>{error.pesoMax}</p>
                 )}
               </div>
             </div>
@@ -256,7 +275,7 @@ export default function CreateDogs() {
                 <label>Minimum years of life: </label>
                 <input
                   className={
-                    (inputError.añosMin && styles.inputdanger) || styles.input
+                    (error.añosMin && styles.inputdanger) || styles.input
                   }
                   type="text"
                   name="añosMin"
@@ -266,8 +285,8 @@ export default function CreateDogs() {
                   onChange={handleChange}
                   placeholder="Number from 1 to 15"
                 />
-                {inputError.añosMin && (
-                  <p className={styles.danger}>{inputError.añosMin}</p>
+                {error.añosMin && (
+                  <p className={styles.danger}>{error.añosMin}</p>
                 )}
               </div>
             </div>
@@ -276,7 +295,7 @@ export default function CreateDogs() {
                 <label>Maximum years of life: </label>
                 <input
                   className={
-                    (inputError.añosMax && styles.inputdanger) || styles.input
+                    (error.añosMax && styles.inputdanger) || styles.input
                   }
                   type="text"
                   name="añosMax"
@@ -286,8 +305,8 @@ export default function CreateDogs() {
                   onChange={handleChange}
                   placeholder="Number from 16 to 100 "
                 />
-                {inputError.añosMax && (
-                  <p className={styles.danger}>{inputError.añosMax}</p>
+                {error.añosMax && (
+                  <p className={styles.danger}>{error.añosMax}</p>
                 )}
               </div>
             </div>
@@ -296,10 +315,10 @@ export default function CreateDogs() {
                 <label>Image </label>
                 <input
                   className={
-                    (inputError.image && styles.inputdanger) || styles.input
+                    (error.image && styles.inputdanger) || styles.input
                   }
                   onChange={handleChange}
-                  type="text"
+                  type="url"
                   name="image"
                   value={input.image}
                   placeholder="http:www.imagen.com"
@@ -323,13 +342,19 @@ export default function CreateDogs() {
                 </select>
                 <ul>
                   <li className={styles.input}>
-                    {input.temperament.map((e) => (
-                      <p>
-                        {" "}
-                        {e}
-                        <button onClick={(e) => handleDelete(e)}>x</button>{" "}
-                      </p>
-                    ))}{" "}
+                    {input.temperament.map(
+                      (e) => (
+                        console.log("ESTO ES E:", e),
+                        (
+                          <div key={e}>
+                            <p>{e} </p>
+                            <button value={e} onClick={(e) => handleDelete(e)}>
+                              x
+                            </button>{" "}
+                          </div>
+                        )
+                      )
+                    )}{" "}
                   </li>
                 </ul>
               </div>

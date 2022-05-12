@@ -46,10 +46,17 @@ export default function Reducer(state = initialState, action) {
       };
 
     case FILTER_ALPHABETICALLY:
+      if(action.payload === "All"){
+        return{
+          ...state,
+          dogs: state.dogs
+        }
+      }
       if (action.payload === "ascendente") {
         return {
           ...state,
           dogs: state.dogs.sort((a, b) => a.name.localeCompare(b.name)),
+        
         };
       } else if (action.payload === "descendente") {
         return {
@@ -100,11 +107,11 @@ export default function Reducer(state = initialState, action) {
       const filterTemper = state.dogs2;
       const temperam =
         action.payload === "All"
-          ? filterTemper //filterTemper.filter((e) => e.temperaments.length > 0)
+          ? filterTemper
           : filterTemper
               .filter(
                 (e) =>
-                  //  e.temperament?.includes(action.payload)
+                 
                   e.temperamentos
                     ? e.temperamentos
                         .map((e) => e.name)

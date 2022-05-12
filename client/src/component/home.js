@@ -25,9 +25,9 @@ export default function Home() {
   const [orden, setOrden] = useState("");
 
   const [pagina, setPagina] = useState(1);
-  const [dogPorPagina ] = useState(8);
+  const [dogPorPagina] = useState(8);
 
-  console.log("ESTO ES EN HOME:",dogPorPagina)
+  console.log("ESTO ES EN HOME:", dogPorPagina);
 
   const indexUltimoDog = pagina * dogPorPagina; //8
   const indexPrimerDog = indexUltimoDog - dogPorPagina;
@@ -49,9 +49,9 @@ export default function Home() {
     dispatch(getTemperament());
   }, [dispatch]);
 
-  useEffect(()=>{
-    setPagina(1)
-  },[allDogs])
+  useEffect(() => {
+    setPagina(1);
+  }, [allDogs]);
 
   if (isLoading) {
     return (
@@ -66,7 +66,6 @@ export default function Home() {
   function handleSort(e) {
     e.preventDefault();
     dispatch(filterAlphabetically(e.target.value));
-    // setDogPagina(1);
     setOrden(`Ordenado ${e.target.value}`);
   }
 
@@ -96,7 +95,6 @@ export default function Home() {
   }
   //--------------------------------------------------------------------------------------------
 
-  
   return (
     <div className={styles.container}>
       <img
@@ -132,7 +130,7 @@ export default function Home() {
             handleSort(e);
           }}
         >
-          <option value="">Order alphabetically</option>
+          <option value="All">Order alphabetically</option>
           <option value="ascendente">A-Z</option>
           <option value="descendente">Z-A</option>
         </select>
@@ -142,7 +140,7 @@ export default function Home() {
             handleSortPeso(e);
           }}
         >
-          <option value="">Sort by Weight</option>
+          <option value="All">Sort by Weight</option>
           <option value="ascendente">upward</option>
           <option value="descendente">descending</option>
         </select>

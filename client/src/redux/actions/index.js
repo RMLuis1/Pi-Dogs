@@ -23,28 +23,37 @@ export const getDog = () => {
   };
 };
 
-// export function getDog(){
-// return async function (dispatch){
-// const result= await axios.get(`http://localhost:3001/dogs`)
-//     return dispatch({
-//         type: GET_ALL_DOG,
-//         payload: result.data
-//     })
-// }
-// }
-
+//!ASYNC
 export function getDogID(id) {
-  return async function (dispatch) {
-    return await axios
-      .get(`http://localhost:3001/dogs/${id}`)
-      .then((result) => {
-        return dispatch({
-          type: GET_ALL_DOG_ID,
-          payload: result.data,
-        });
+  try {
+    return async function (dispatch) {
+      const result = await axios.get(`http://localhost:3001/dogs/${id}`);
+      return dispatch({
+        type: GET_ALL_DOG_ID,
+        payload: result.data,
       });
-  };
+    };
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+//!PROMIS
+// export function getDogID(id) {
+//   return function (dispatch) {
+//     axios
+//       .get(`http://localhost:3001/dogs/${id}`)
+//       .then((result) => {
+//         return dispatch({
+//           type: GET_ALL_DOG_ID,
+//           payload: result.data,
+//         });
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// }
 
 export function getSearch(name) {
   return async function (dispatch) {
@@ -127,6 +136,7 @@ export function getDogDeleted(id) {
       });
   };
 }
+
 //-----------------------------------------------------------------------------
 //todavia falta revisar
 export const editDogs = (id, { name }) => {
