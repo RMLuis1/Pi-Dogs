@@ -34,12 +34,27 @@ router.get("/dogs", async (req, res) => {
         },
         include: [Temperamento],
       });
-      console.log(name)
+      console.log(name);
       const DogApi = await apiDogs.filter((e) =>
         e.name.toLowerCase().includes(name.toLowerCase())
       );
 
       console.log(DogApi);
+      if (DogDB.length > 0 && DogApi.length > 0) {
+        const dog1 = await DogApi.map((e) => {
+          return {
+            id: e.id,
+            name: e.name,
+            altura: e.height.metric,
+            peso: e.weight.metric,
+            año_de_vida: e.life_span,
+            image: e.image.url,
+            temperament: e.temperament,
+          };
+        });
+        const todos = await DogDB.concat(dog1);
+        res.status(200).send(todos);
+      }
 
       if (DogDB.length > 0) {
         res.status(200).send(DogDB);
@@ -109,8 +124,6 @@ router.get("/dogs/:id", async (req, res) => {
     if (id == 0) {
       res.status(404).send("You must enter the ID");
     } else if (id) {
-    
-
       if (id.includes("-")) {
         let DogDB = [];
         DogDB.push(
@@ -208,6 +221,27 @@ router.get("/temperament", async (req, res) => {
   }
 });
 
+router.delete("/dogs/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    Dog.findByPk(id).then((e) => e.destroy());
+    res.status(200).send("Dog Deleted");
+  } catch (error) {
+    console.log(error);
+  }
+});
 
+router.put("/dogs/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  try {
+    Dog.findByPk(id).then((e) => e.update({ name: name }));
+
+    res.status(200).send("Editado exitosamente");
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;
