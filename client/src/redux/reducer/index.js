@@ -74,7 +74,7 @@ export default function Reducer(state = initialState, action) {
         return {
           ...state,
           dogs2: state.dogs.sort(function (a, b) {
-            if (Number(a.peso.split("-")[0]) > Number(b.peso.split("-")[0])) {
+                       if (Number(a.peso.split("-")[0]) > Number(b.peso.split("-")[0])) {
               return -1;
             }
             if (Number(b.peso.split("-")[0]) > Number(a.peso.split("-")[0])) {

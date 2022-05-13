@@ -58,13 +58,29 @@ export function getSearch(name) {
   };
 }
 
+// export function getTemperament() {
+//   return async function (dispatch) {
+//     const result = await axios.get("http://localhost:3001/temperament");
+//     return dispatch({
+//       type: GET_TEMPERAMENT,
+//       payload: result.data,
+//     });
+//   };
+// }
+
 export function getTemperament() {
-  return async function (dispatch) {
-    const result = await axios.get("http://localhost:3001/temperament");
-    return dispatch({
-      type: GET_TEMPERAMENT,
-      payload: result.data,
-    });
+  return function (dispatch) {
+    axios
+      .get("http://localhost:3001/temperament")
+      .then((result) => {
+        return dispatch({
+          type: GET_TEMPERAMENT,
+          payload: result.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 }
 

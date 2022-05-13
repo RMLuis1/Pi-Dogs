@@ -34,10 +34,12 @@ router.get("/dogs", async (req, res) => {
         },
         include: [Temperamento],
       });
-      const DogApi = await apiDogs.filter(
-        (e) => e.name.toLowerCase() == name.toLowerCase()
+      console.log(name)
+      const DogApi = await apiDogs.filter((e) =>
+        e.name.toLowerCase().includes(name.toLowerCase())
       );
-      // console.log(DogApi);
+
+      console.log(DogApi);
 
       if (DogDB.length > 0) {
         res.status(200).send(DogDB);
