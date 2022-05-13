@@ -40,7 +40,7 @@ font-size: 150px;
 .button{
 border: none;
 position:relative;
-top:450px;
+top:250px;
 background: none;
 padding: 30px 80px;
 width: 500px;
@@ -81,13 +81,20 @@ cursor: pointer;
 
 
 .fondodeportada {
-    height: 100vh;
-
+    /* background-image: url("https://www.publicdomainpictures.net/pictures/400000/nahled/hunde-vintage-kunst-alt-1619901154yXZ.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed; */
+    /* background-position: center center; */
+    height: 100%;
     width: 100%;
-    /* max-width: max-content; */
+
+
+    /* max-width: max-content;  */
     position: absolute;
     top: 0;
     left: 0;
     z-index: -100;
+    /* background-position: inherit; */
+   
 }
 

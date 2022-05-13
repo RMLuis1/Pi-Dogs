@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDogID, getDogDeleted, getDog, editDogs } from "../redux/actions";
+import { getDogID } from "../redux/actions";
 import { Spinner } from "./Snipper";
 import styles from "./dogsDetall.module.css";
 
 export default function Dogs() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -21,23 +20,8 @@ export default function Dogs() {
     setIsLoading(false);
   }, 4000);
 
-  function handleDeleted(e) {
-    e.preventDefault();
-    dispatch(getDogDeleted(e.target.value));
-    alert("Dog Borrado exitosamente");
-    navigate("/home");
-  }
-
-  //----------------------------------------------------------------------------------
-  //!funcion para editar
-  // function handleEdit(e) {
-  //   e.preventDefault();
-  //   dispatch(editDogs(e.target.value));
-  //   alert("Dog Editado exitosamente");
-  //   dispatch(getDogID(id));
-  // }
-  //---------------------------------------------------------------------------------------
-
+ 
+ 
   const dogsDetall = useSelector((state) => state.detallDog);
   console.log("ESTO ES DETALL: ", dogsDetall);
 
@@ -65,38 +49,7 @@ export default function Dogs() {
           DESCRIPTION OF THE DOG <span>&#160; </span>{" "}
         </h1>
       </div>
-      <div>
-        {!Number(dogsDetall[0].id) ? (
-          // <Link to="/home" >
-          <button
-            className={styles.remover}
-            value={dogsDetall[0].id}
-            onClick={(e) => handleDeleted(e)}
-          >
-            Remove
-          </button>
-        ) : (
-          /* </Link > */
-          " "
-        )}
-      </div>
-      //-------------------------------------------------------------------------------
-      /*seguir revisando */
-      {/* <button onClick={() => validate=true }>Editar</button>,
-      <div>
-         {  
-         validate ? (
-          <label>
-            Name:<input></input>
-          </label>
-        ) : (
-          ""
-        )
-        
-        }
-      </div> */}
-      /*seguir revisando */
-      //------------------------------------------------------------------------------
+         
       <div>
         {dogsDetall.length > 0 ? (
           <div className={styles.div2}>

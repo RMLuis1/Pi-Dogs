@@ -23,7 +23,6 @@ export const getDog = () => {
   };
 };
 
-//!ASYNC
 export function getDogID(id) {
   try {
     return async function (dispatch) {
@@ -37,23 +36,6 @@ export function getDogID(id) {
     console.log(error);
   }
 }
-
-//!PROMIS
-// export function getDogID(id) {
-//   return function (dispatch) {
-//     axios
-//       .get(`http://localhost:3001/dogs/${id}`)
-//       .then((result) => {
-//         return dispatch({
-//           type: GET_ALL_DOG_ID,
-//           payload: result.data,
-//         });
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   };
-// }
 
 export function getSearch(name) {
   return async function (dispatch) {
@@ -86,18 +68,6 @@ export function getTemperament() {
   };
 }
 
-// export function createDogs(dogs) {
-//   return async function (dispatch) {
-//     return await axios
-//       .post("http://localhost:3001/create", dogs)
-//       .then((result) => {
-//         dispatch({
-//           type: CREATE_DOGS,
-//           payload: result.data,
-//         });
-//       });
-//   };
-// }
 export const createDogs = ({
   name,
   alturaMin,
@@ -123,33 +93,6 @@ export const createDogs = ({
     });
   };
 };
-
-export function getDogDeleted(id) {
-  return async function (dispatch) {
-    return await axios
-      .delete(`http://localhost:3001/dogs/${id}`)
-      .then((result) => {
-        return dispatch({
-          type: GET_ALL_DOG_DELETED,
-          payload: result.data,
-        });
-      });
-  };
-}
-
-//-----------------------------------------------------------------------------
-//todavia falta revisar
-export const editDogs = (id, { name }) => {
-  return async (dispatch) => {
-    await axios.put(`http://localhost:3001/dog/${id}`, {
-      name: name,
-    });
-    dispatch({
-      type: EDIT_DOG,
-    });
-  };
-};
-//-------------------------------------------------------------------------------------
 
 export function filterAlphabetically(payload) {
   return {

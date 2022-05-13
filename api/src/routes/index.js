@@ -107,7 +107,7 @@ router.get("/dogs/:id", async (req, res) => {
     if (id == 0) {
       res.status(404).send("You must enter the ID");
     } else if (id) {
-      // console.log(DogApi);
+    
 
       if (id.includes("-")) {
         let DogDB = [];
@@ -183,9 +183,6 @@ router.get("/temperament", async (req, res) => {
 
       const pruebaTEMP = await prueba.map((e) => e.trim());
 
-      // const sinRepet = new Set(pruebaTEMP);
-      // const result = [...sinRepet];
-      // console.log(result);
       pruebaTEMP.forEach((e) => {
         if (e !== "") {
           Temperamento.findOrCreate({
@@ -197,13 +194,11 @@ router.get("/temperament", async (req, res) => {
       });
       const tempDb = await Temperamento.findAll();
       if (tempDb) {
-        // console.log(tempDb);
         res.status(200).send(tempDb);
       } else {
         res.status(404).send("ERROR AQUI!!");
       }
     } else {
-      console.log(dbTemp);
       res.status(200).send(dbTemp);
     }
   } catch (error) {
@@ -211,41 +206,6 @@ router.get("/temperament", async (req, res) => {
   }
 });
 
-router.delete("/dogs/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    Dog.findByPk(id).then((e) => e.destroy());
-    res.status(200).send("Dog Deleted!");
-  } catch (error) {
-    console.log(error);
-  }
-});
 
-router.put("/dogs/:id", async (req, res) => {
-  const { id } = req.params;
-  const { name } = req.body;
-  try {
-    Dog.findByPk(id).then((e) =>
-      e.update({
-        name: name,
-      })
-    );
-    res.status(200).send("Editado exitosamente");
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.post("/temperament", async (req, res) => {
-  try {
-    const { name } = req.body;
-    const temperaments = await Temperamento.findOrCreate({
-      where: { name },
-    });
-    if (temperaments) res.status(200).json({ msg: "Temperament created" });
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 module.exports = router;
