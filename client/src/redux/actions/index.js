@@ -9,7 +9,7 @@ export const FILTER_ALPHABETICALLY = "FILTER_ALPHABETICALLY";
 export const FILTER_WEIGHT = "FILTER_WEIGHT";
 export const FILTER_TEMPERAMENT = "FILTER_TEMPERAMENT";
 export const FILTER_CREATE = "FILTER_CREATE";
-export const GET_ALL_DOG_DELETED = "GET_ALL_DOG_DELETED";
+export const GET_DOG_DELETED = "GET_ALL_DOG_DELETED";
 export const EDIT_DOG = "EDIT_DOG";
 
 export const getDog = () => {
@@ -109,6 +109,39 @@ export const createDogs = ({
     });
   };
 };
+
+export function getDogDeleted(id) {
+  return function (dispatch) {
+    axios
+      .delete(`http://localhost:3001/dogs/${id}`)
+      .then((result) => {
+        return dispatch({
+          type: GET_DOG_DELETED,
+          payload: result.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function editDog(id, { name }) {
+  return function (dispatch) {
+    axios
+      .put(`http//localhost:3001/dogs/${id}`, {
+        name: name,
+      })
+      .then((result) => {
+        return dispatch({
+          type: EDIT_DOG,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
 
 export function filterAlphabetically(payload) {
   return {

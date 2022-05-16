@@ -8,6 +8,7 @@ import {
   FILTER_WEIGHT,
   FILTER_TEMPERAMENT,
   FILTER_CREATE,
+  GET_DOG_DELETED,
 } from "../actions";
 
 const initialState = {
@@ -44,7 +45,10 @@ export default function Reducer(state = initialState, action) {
       return {
         ...state,
       };
-
+      case GET_DOG_DELETED:
+        return {
+          ...state,
+        }
     case FILTER_ALPHABETICALLY:
       if(action.payload === "All"){
         return{

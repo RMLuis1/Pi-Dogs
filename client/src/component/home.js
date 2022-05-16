@@ -37,12 +37,13 @@ export default function Home() {
     setPagina(pageNumber);
   };
 
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 4000);
+  // setTimeout(() => {
+  //   setIsLoading(false);
+  // }, 4000);
 
   useEffect(() => {
     dispatch(getDog());
+    setIsLoading(false)
   }, [dispatch]);
 
   useEffect(() => {

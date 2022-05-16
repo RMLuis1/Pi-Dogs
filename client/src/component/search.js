@@ -8,15 +8,17 @@ export function Search() {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
 
-  const handleInput = (e) => {
+function handleInput(e) {
     e.preventDefault();
     setSearchText(e.target.value);
   };
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getSearch(searchText));
+  
     setSearchText("");
   }
+
 
   return (
     <div className={styles.searchContainer}>
@@ -36,6 +38,7 @@ export function Search() {
           >
             Search
           </button>
+          
         </div>
       </form>
     </div>
