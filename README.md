@@ -2,7 +2,7 @@
 
 ## Introduccion
 
-Proyecto individual realizado para presentar en HenryBootcamp. Un sitio web consume una API (REST Countries) para traerse información de razas de perros y solo las guarda los temperamentos en su propia base de datos (PostgreSQL). Luego utilizamos esta información en diferentes rutas para permitirle al usuario interactuar y poder observar  las distintas razas (Puede crear las mismas a través de un formulario controlado), sus principales caracteristicas y otros datos de interés. En otras funcionalidades el usuario también puede buscar razas por nombre y filtrarlos (Si tiene temperamentos, filtrar la busqueda por peso, altura y ordenarlos alfabéticamente).
+Proyecto individual realizado para presentar en HenryBootcamp. Un sitio web consume una API (REST Countries) para traerse información de razas de perros y solo las guarda los temperamentos en su propia base de datos (PostgreSQL). Luego utilizamos esta información en diferentes rutas para permitirle al usuario interactuar y poder observar  las distintas razas (Puede crear las mismas a través de un formulario controlado), sus principales caracteristicas y otros datos de interés. En otras funcionalidades el usuario también puede buscar razas por nombre , filtrarlos(por temperamentos) y ordenarlos (alfabéticamente, peso, y altura).
 
 ## Tecnologias utilizadas: 
 
