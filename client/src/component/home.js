@@ -28,7 +28,7 @@ export default function Home() {
   const [dogPorPagina] = useState(8);
 
   console.log("ESTO ES EN HOME:", dogPorPagina);
-
+//Se realiza logica del paginado. Cada pagina debe contener 8 cards
   const indexUltimoDog = pagina * dogPorPagina; //8
   const indexPrimerDog = indexUltimoDog - dogPorPagina;
   const currentDog = allDogs.slice(indexPrimerDog, indexUltimoDog);
@@ -100,15 +100,14 @@ export default function Home() {
   // navToggle.addEventListener("click", ()=>{
   // navMenu.classlistName.toggle("menu_visible")
   // })
-  function cambioEstilo(){
+  function cambioEstilo() {
     //   const navMenu = document.getElementById("menu");
     // navMenu.className= styles.menu_visible
-      const navMenu = document.getElementById("menu");
-     navMenu.className ? navMenu.className= styles.menu_visible :navMenu.className =styles.menu
-
-   
-      }
-  
+    const navMenu = document.getElementById("menu");
+    navMenu.className
+      ? (navMenu.className = styles.menu_visible)
+      : (navMenu.className = styles.menu);
+  }
 
   return (
     <div className={styles.container}>
@@ -120,10 +119,15 @@ export default function Home() {
               DOGS....<span>&#160; </span>{" "}
             </h1>
           </a>
-          <button onClick={()=>{cambioEstilo()}} className={styles.toggle}>
+          <button
+            onClick={() => {
+              cambioEstilo();
+            }}
+            className={styles.toggle}
+          >
             <i class="fa fa-bars" aria-hidden="true"></i>
           </button>
-          <ul id="menu" className={styles.menu || styles.menu_visible} >
+          <ul id="menu" className={styles.menu || styles.menu_visible}>
             <li className={styles.item} key="search">
               <Search />
             </li>
@@ -135,23 +139,7 @@ export default function Home() {
               </a>
             </li>
           </ul>
-          {/* <div className={styles.titulos}>
-        <h1 className={styles.entrada}>
-          DOGS....<span>&#160; </span>{" "}
-        </h1>
-      </div>
-
-      <div className={styles.search}>
-        {" "}
-        <Search />{" "}
-      </div>
-
-      <div className={styles.create}>
-        <NavLink to="/Create">
-          {" "}
-          <button className={styles.buttonCreate}>Create dog breed</button>{" "}
-        </NavLink>
-      </div> */}
+         
         </nav>
       </header>
       <div className={styles.navbar}>
@@ -193,44 +181,49 @@ export default function Home() {
         </select>
       </div>
 
-      {/* <div className={styles.paginado}> */}
+      
       <Paginade
         dogPorPagina={dogPorPagina}
         allDogs={allDogs.length}
         paginado={paginado}
       />
 
-      {/* </div> */}
-
       <div className={styles.dogsCard}>
-        {currentDog?.map((e) => {
-          return (
-            <div key={e.name}>
-              <ul>
-                {" "}
-                <Link className={styles.linkName} to={`/home/${e.id}`}>
-                  <DogCard
-                    name={e.name}
-                    image={e.image}
-                    peso={e.peso}
-                    temperament={
-                      e.temperamentos
-                        ? e.temperamentos.map((e) => e.name + ", ")
-                        : e.temperament
-                    }
-                  />{" "}
-                </Link>
-              </ul>
-            </div>
-          );
-        })}
+        {currentDog.length > 0 ? (
+          currentDog?.map((e) => {
+            return (
+              <div key={e.name}>
+                <ul>
+                  {" "}
+                  <Link className={styles.linkName} to={`/home/${e.id}`}>
+                    <DogCard
+                      name={e.name}
+                      image={e.image}
+                      peso={e.peso}
+                      temperament={
+                        e.temperamentos
+                          ? e.temperamentos.map((e) => e.name + ", ")
+                          : e.temperament
+                      }
+                    />{" "}
+                  </Link>
+                </ul>
+              </div>
+            );
+          })
+        ) : (
+          <div>
+            <h1 className={styles.entrada2}>
+              Content cannot be displayed at this time.Try again later.
+            </h1>{" "}
+          </div>
+        )}
       </div>
       <Paginade
         dogPorPagina={dogPorPagina}
         allDogs={allDogs.length}
         paginado={paginado}
       />
-      {/* </div> */}
-    </div>
+        </div>
   );
 }

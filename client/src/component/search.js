@@ -11,18 +11,22 @@ export function Search() {
 function handleInput(e) {
     e.preventDefault();
     setSearchText(e.target.value);
+    console.log(e.target.value)
+        dispatch(getSearch(searchText));
+
   };
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(getSearch(searchText));
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   dispatch(getSearch(searchText));
   
-    setSearchText("");
-  }
+  //   setSearchText("");
+  // }
 
 
   return (
     <div className={styles.searchContainer}>
-      <form onSubmit={handleSubmit}>
+      {/* <form > */}
+      {/* <form onSubmit={handleSubmit}> */}
         <div className={styles.searchBox}>
           <input
             className={styles.searchImp}
@@ -30,17 +34,17 @@ function handleInput(e) {
             placeholder="Search..."
             onChange={(e) => handleInput(e)}
           />
-          <button
+          {/* <button
             className={styles.searchBot}
             type="submit"
             size={20}
             onClick={(e) => handleSubmit(e)}
           >
             Search
-          </button>
+          </button> */}
           
         </div>
-      </form>
+      {/* </form> */}
     </div>
   );
 }

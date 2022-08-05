@@ -191,6 +191,20 @@ display: table;
          line-height: 80px;
  }
 
+ .entrada2 {
+     overflow: hidden;
+     font-family: monospace;
+     white-space: nowrap;
+     font-size: 38px;
+     color: black;
+    
+     width: 650px;
+     border-right: 2px solid rgba(207, 173, 121, 0.87);
+     animation: animacionIntro2 4.8s steps(18, end) infinite,
+         animacionBar 1s step-end infinite;
+     line-height: 40px;
+ }
+
  @keyframes animacionIntro {
      0% {
          width: 0;
@@ -198,6 +212,15 @@ display: table;
 
      100% {
          width: 180px;
+     }
+ }
+ @keyframes animacionIntro2 {
+     0% {
+         width: 0;
+     }
+
+     100% {
+         width: 1250px;
      }
  }
 

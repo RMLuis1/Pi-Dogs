@@ -38,27 +38,33 @@ export function getDogID(id) {
   }
 }
 
-export function getSearch(name) {
-  return async function (dispatch) {
-    return await axios
-      .get(`/dogs?name=${name}`)
-      .then((result) => {
-        return dispatch({
-          type: GET_ALL_DOGS_NAME,
-          payload: result.data,
-        });
-      })
-      .catch(function (error) {
-        alert("The breed of dog you are looking for does not exist!");
-        console.log(
-          error.name +
-            "The breed of dog you are looking for does not exist!" +
-            error.message
-        );
-      });
-  };
+// export function getSearch(name) {
+//   return async function (dispatch) {
+//     return await axios
+//       .get(`/dogs?name=${name}`)
+//       .then((result) => {
+//         return dispatch({
+//           type: GET_ALL_DOGS_NAME,
+//           payload: result.data,
+//         });
+//       })
+//       .catch(function (error) {
+//         alert("The breed of dog you are looking for does not exist!");
+//         console.log(
+//           error.name +
+//             "The breed of dog you are looking for does not exist!" +
+//             error.message
+//         );
+//       });
+//   };
+// }
+export function getSearch(payload){
+  console.log("Esto es payload",payload)
+  return {
+    type: GET_ALL_DOGS_NAME,
+    payload,
+  }
 }
-
 // export function getTemperament() {
 //   return async function (dispatch) {
 //     const result = await axios.get(" /temperament");

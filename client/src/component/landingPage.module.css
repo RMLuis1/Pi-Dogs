@@ -2,34 +2,13 @@
 .title{
 color: rgb(0, 0, 0);
 display: grid;
-font-size:300%;
+font-size:300px;
 gap: 40px;
 padding: 70px;
 justify-content: left;
 font-size: 150px;
 }
-/* .button{
-    
-        height: auto;
-        width: 300px;
-        font-size: 30px;
-        background-color: transparent;
-        color: rgb(16, 16, 16);
-        line-height: 26px;
-        border-radius: 28px;
-        border-color: #940000;
-        cursor: pointer;
-        transition: width 0.2s;
-        float: none;
-        margin-left: 3%;
-    
-    
-    
-}
-.button:hover {
-    width: 320px;
-    background-color: #3d4b70;
-} */
+
 
 .container{
     height:100%;
@@ -40,10 +19,10 @@ font-size: 150px;
 .button{
 border: none;
 position:relative;
-top:250px;
+top:150px;
 background: none;
 padding: 30px 80px;
-width: 500px;
+width: 300px;
 display: inline-block;
 text-transform: uppercase;
 background: #866841;
@@ -66,8 +45,8 @@ cursor: pointer;
     padding: 30px 80px;
     z-index: -1;
     transition: all 0.5s ease-out;
-    width: 100%;
-    height: 100%;
+    width: 40%;
+    height: 40%;
     left: 0;
     top:-100%;
     background: #382a0c;

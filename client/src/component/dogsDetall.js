@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { getDogDeleted, getDogID } from "../redux/actions";
 import { Spinner } from "./Snipper";
 import styles from "./dogsDetall.module.css";
+import Swal from "sweetalert2";
 
 export default function Dogs() {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function Dogs() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const [block, setBlocñ] = useState(false);
+  // const [block, setBlocñ] = useState(false);
 
   useEffect(() => {
     dispatch(getDogID(id));
@@ -31,13 +32,14 @@ export default function Dogs() {
   function handleDeleted(e) {
     e.preventDefault();
     dispatch(getDogDeleted(e.target.value));
-    alert("Dog deleted successfully!");
+    Swal.fire({
+      title: "Exito!",
+      text: "Dog deleted successfully!",
+      icon: "success",
+      confirmButtonText: "ok",
+    });
     navigate("/home");
   }
-
-  // function handleChange(e){
-  // set
-  // }
 
   if (isLoading) {
     return (
@@ -49,7 +51,7 @@ export default function Dogs() {
 
   return (
     <div className={styles.container}>
-       <NavLink to="/home">
+      <NavLink to="/home">
         <button className={styles.buttonVolver}>Go back</button>
       </NavLink>
       <div className={styles.h1}>
@@ -58,7 +60,7 @@ export default function Dogs() {
           DESCRIPTION OF THE DOG <span>&#160; </span>{" "}
         </h1>
       </div>
-      <div >
+      <div>
         {!Number(dogsDetall[0].id) ? (
           <button
             className={styles.remover}
@@ -72,13 +74,11 @@ export default function Dogs() {
         )}
       </div>
 
-      <div >
+      <div>
         {dogsDetall.length > 0 ? (
           <div className={styles.div2}>
             <img
               className={styles.img}
-              // width={450}
-              // height={400}
               src={dogsDetall[0].image}
               alt="Image no Found"
             />

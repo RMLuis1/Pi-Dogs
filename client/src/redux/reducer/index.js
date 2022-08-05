@@ -32,9 +32,21 @@ export default function Reducer(state = initialState, action) {
         detallDog: action.payload,
       };
     case GET_ALL_DOGS_NAME:
+      const searc = state.dogs2;
+      console.log("esto es reducer",action.payload)
+      console.log("esto es sear",searc)
+      const buscador = action.payload.length >1
+        ? searc.filter((e) =>
+            e.name.toLowerCase().includes(action.payload.toLowerCase())
+          )
+        : searc;
+        
+        console.log("Esto es buscador",buscador)
       return {
         ...state,
-        dogs: action.payload,
+        // dogs: action.payload,
+        // dogs: state.dogs,
+        dogs: buscador,
       };
     case GET_TEMPERAMENT:
       return {
@@ -45,22 +57,21 @@ export default function Reducer(state = initialState, action) {
       return {
         ...state,
       };
-      case GET_DOG_DELETED:
+    case GET_DOG_DELETED:
+      return {
+        ...state,
+      };
+    case FILTER_ALPHABETICALLY:
+      if (action.payload === "All") {
         return {
           ...state,
-        }
-    case FILTER_ALPHABETICALLY:
-      if(action.payload === "All"){
-        return{
-          ...state,
-          dogs: state.dogs
-        }
+          dogs: state.dogs,
+        };
       }
       if (action.payload === "ascendente") {
         return {
           ...state,
           dogs: state.dogs.sort((a, b) => a.name.localeCompare(b.name)),
-        
         };
       } else if (action.payload === "descendente") {
         return {
@@ -78,7 +89,7 @@ export default function Reducer(state = initialState, action) {
         return {
           ...state,
           dogs2: state.dogs.sort(function (a, b) {
-                       if (Number(a.peso.split("-")[0]) > Number(b.peso.split("-")[0])) {
+            if (Number(a.peso.split("-")[0]) > Number(b.peso.split("-")[0])) {
               return -1;
             }
             if (Number(b.peso.split("-")[0]) > Number(a.peso.split("-")[0])) {
@@ -115,7 +126,6 @@ export default function Reducer(state = initialState, action) {
           : filterTemper
               .filter(
                 (e) =>
-                 
                   e.temperamentos
                     ? e.temperamentos
                         .map((e) => e.name)

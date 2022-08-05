@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { createDogs, getTemperament } from "../redux/actions";
 import styles from "./createDogs.module.css";
+import Swal from "sweetalert2";
 
 export default function CreateDogs() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ export default function CreateDogs() {
   //---------------------------------------------------------------------------------------------------------
   //! SELECT TEMPERAMENT
   function handleTemperament(e) {
+    console.log("esto es e", e);
     setInput({
       ...input,
       temperament: input.temperament.includes(e.target.value)
@@ -72,31 +74,76 @@ export default function CreateDogs() {
       // !input.image ||
       !input.temperament.length
     ) {
-      return alert("Todos los campos son obligatorios");
+      return Swal.fire({
+        title: "Error!",
+        text: "Todos los campos son obligatorios",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
     }
     if (error.name) {
-      return alert("Name invalidos");
+      return Swal.fire({
+        title: "Error!",
+        text: "Name invalidos",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
     }
     if (error.alturaMin) {
-      return alert("Altura Minima invalidos");
+      return Swal.fire({
+        title: "Error!",
+        text: "Altura Minima invalidos",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
     }
     if (error.alturaMax) {
-      return alert("Altura Maxima invalidos");
+      return Swal.fire({
+        title: "Error!",
+        text: "Altura Maxima invalidos",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
     }
     if (error.pesoMin) {
-      return alert("Peso Minimo invalidos");
+      return Swal.fire({
+        title: "Error!",
+        text: "Peso Minimo invalidos",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
     }
     if (error.pesoMax) {
-      return alert("Peso Maximo invalidos");
+      return Swal.fire({
+        title: "Error!",
+        text: "Peso Maximo invalidos",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
     }
     if (error.añosMin) {
-      return alert("Años Minimo invalidos");
+      return Swal.fire({
+        title: "Error!",
+        text: "Años Minimo invalidos",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
     }
     if (error.añosMax) {
-      return alert("Años Maaximo invalidos");
+      return Swal.fire({
+        title: "Error!",
+        text: "Años Maaximo invalidos",
+        icon: "error",
+        confirmButtonText: "ok",
+      });
     } else {
       dispatch(createDogs(input));
-      alert("Dog breed created successfully!");
+      Swal.fire({
+        title: "Exito!",
+        text: "Dog breed created successfully!",
+        icon: "success",
+        confirmButtonText: "ok",
+      });
       setInput({
         ...input,
         name: "",
@@ -131,32 +178,47 @@ export default function CreateDogs() {
       error.name = "Name is invalid";
     } else if (!input.alturaMin) {
       error.alturaMin = "Minimum height is required";
-    } else if (input.alturaMin < 1 || input.alturaMin > 40 || !Number(input.alturaMin)) {
-      error.alturaMin = "Minimum height is number 1 - 40";
+    } else if (
+      input.alturaMin < 1 ||
+      input.alturaMin > 100 ||
+      !Number(input.alturaMin)
+    ) {
+      error.alturaMin = "Minimum height is number 1";
     } else if (!input.alturaMax) {
       error.alturaMax = "Maximum height is required";
     } else if (
-      input.alturaMax < 41 ||
+      input.alturaMax <= input.alturaMin ||
       input.alturaMax > 100 ||
       !Number(input.alturaMax)
     ) {
-      error.alturaMax = "Maximum height is number 41 - 100";
+      error.alturaMax =
+        "The maximum height must be greater than the minimum height and less than 100";
     } else if (!input.pesoMin) {
       error.pesoMin = "Minimum weight is required";
-    } else if (input.pesoMin < 1 || input.pesoMin > 40 || !Number(input.pesoMin)) {
-      error.pesoMin = "Minimum weight is number 1 - 40";
+    } else if (input.pesoMin < 1 || input.pesoMin >100|| !Number(input.pesoMin)) {
+      error.pesoMin = "Minimum weight is number 1";
     } else if (!input.pesoMax) {
       error.pesoMax = "Maximum weight is required";
-    } else if (input.pesoMax < 41 || input.pesoMax > 100 || !Number(input.pesoMax)) {
-      error.pesoMax = "Maximum weight is number 41 - 100";
+    } else if (
+      input.pesoMax <= input.pesoMin ||
+      input.pesoMax > 100 ||
+      !Number(input.pesoMax)
+    ) {
+      error.pesoMax =
+        "The maximum weight must be greater than the minimum weight and less than 100";
     } else if (!input.añosMin) {
       error.añosMin = "Minimum years of life is required";
-    } else if (input.añosMin < 1 || input.añosMin > 15 || !Number(input.añosMin)) {
-      error.añosMin = "Minimum years of lifeis number 1 - 15";
+    } else if (input.añosMin < 1 || input.añosMax > 100 || !Number(input.añosMin)) {
+      error.añosMin = "Minimum years of lifeis number 1";
     } else if (!input.añosMax) {
       error.añosMax = "Miximum years of life is required";
-    } else if (input.añosMax < 16 || input.añosMax > 100 || !Number(input.añosMax)) {
-      error.añosMax = "Miximum years of life is number 16 - 100";
+    } else if (
+      input.añosMax <= input.añosMin ||
+      input.añosMax > 100 ||
+      !Number(input.añosMax)
+    ) {
+      error.añosMax =
+        "The maximum years of life must be greater than the minimum years of life and less than 100";
     }
     console.log("ESTO ES ERROR!!!!", error);
     return error;
@@ -165,8 +227,8 @@ export default function CreateDogs() {
 
   return (
     <div>
-       <div className={styles.divM}>
-        <Link  className={styles.aa} to="/home">
+      <div className={styles.divM}>
+        <Link className={styles.aa} to="/home">
           <button className={styles.volver}>Go back</button>
         </Link>
         <br />
@@ -190,7 +252,7 @@ export default function CreateDogs() {
 
             <div>
               <div>
-                <label>Maximum height: </label>
+                <label>Minimum height: </label>
                 <input
                   className={
                     (error.alturaMin && styles.inputdanger) || styles.input
@@ -201,7 +263,7 @@ export default function CreateDogs() {
                   onChange={handleChange}
                   min="1"
                   max="40"
-                  placeholder="Number from 1 to 49"
+                  placeholder="Number greater or equal to 1"
                 />
                 {error.alturaMin && (
                   <p className={styles.danger}>{error.alturaMin}</p>
@@ -210,7 +272,7 @@ export default function CreateDogs() {
             </div>
             <div>
               <div>
-                <label>Minimun height: </label>
+                <label>Maximum height: </label>
                 <input
                   className={
                     (error.alturaMax && styles.inputdanger) || styles.input
@@ -218,10 +280,10 @@ export default function CreateDogs() {
                   type="text"
                   name="alturaMax"
                   value={input.alturaMax}
-                  min="41"
+                  min={input.alturaMin}
                   max="100"
                   onChange={handleChange}
-                  placeholder="Number from 41 to 100"
+                  placeholder="number greater than minimum height and less than 100"
                 />
                 {error.alturaMax && (
                   <p className={styles.danger}>{error.alturaMax}</p>
@@ -242,7 +304,7 @@ export default function CreateDogs() {
                   min="1"
                   max="40"
                   onChange={handleChange}
-                  placeholder="Number from 1 to 40"
+                  placeholder="Number greater or equal to 1"
                 />
                 {error.pesoMin && (
                   <p className={styles.danger}>{error.pesoMin}</p>
@@ -262,7 +324,7 @@ export default function CreateDogs() {
                   max="100"
                   value={input.pesoMax}
                   onChange={handleChange}
-                  placeholder="Number from 41 to 100"
+                  placeholder="Number greater than minimum weight and less than 100"
                 />
                 {error.pesoMax && (
                   <p className={styles.danger}>{error.pesoMax}</p>
@@ -282,7 +344,7 @@ export default function CreateDogs() {
                   min="1"
                   max="15"
                   onChange={handleChange}
-                  placeholder="Number from 1 to 15"
+                  placeholder="Number greater or equal to 1"
                 />
                 {error.añosMin && (
                   <p className={styles.danger}>{error.añosMin}</p>
@@ -302,7 +364,7 @@ export default function CreateDogs() {
                   min="16"
                   max="100"
                   onChange={handleChange}
-                  placeholder="Number from 16 to 100 "
+                  placeholder="Number greater than minimum yearss of life and less than 100"
                 />
                 {error.añosMax && (
                   <p className={styles.danger}>{error.añosMax}</p>
@@ -341,19 +403,14 @@ export default function CreateDogs() {
                 </select>
                 <ul>
                   <li className={styles.input}>
-                    {input.temperament.map(
-                      (e) => (
-                        console.log("ESTO ES E:", e)
-                        (
-                          <div key={e}>
-                            <p>{e} </p>
-                            <button value={e} onClick={(e) => handleDelete(e)}>
-                              x
-                            </button>{" "}
-                          </div>
-                        )
-                      )
-                    )}{" "}
+                    {input.temperament.map((e) => (
+                      <div key={e}>
+                        <p>{e} </p>
+                        <button value={e} onClick={(e) => handleDelete(e)}>
+                          x
+                        </button>{" "}
+                      </div>
+                    ))}{" "}
                   </li>
                 </ul>
               </div>
