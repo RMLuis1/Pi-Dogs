@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,13 +48,8 @@ export default function Dogs() {
   }
 
   return (
-    <div>
-      <img
-        className={styles.fondodeportada}
-        src="https://thumbs.dreamstime.com/b/patr%C3%B3n-impecable-con-rayas-punteadas-e-impresiones-realistas-de-la-pata-perro-fondo-plano-m%C3%ADnimo-huella-mascota-y-huesos-color-176649109.jpg"
-        alt="Not found"
-      />
-      <NavLink to="/home">
+    <div className={styles.container}>
+       <NavLink to="/home">
         <button className={styles.buttonVolver}>Go back</button>
       </NavLink>
       <div className={styles.h1}>
@@ -62,7 +58,7 @@ export default function Dogs() {
           DESCRIPTION OF THE DOG <span>&#160; </span>{" "}
         </h1>
       </div>
-      <div>
+      <div >
         {!Number(dogsDetall[0].id) ? (
           <button
             className={styles.remover}
@@ -76,7 +72,7 @@ export default function Dogs() {
         )}
       </div>
 
-      <div>
+      <div >
         {dogsDetall.length > 0 ? (
           <div className={styles.div2}>
             <img

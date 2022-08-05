@@ -1,9 +1,14 @@
+*{
+  margin :0 ;
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont,monospace;
   -webkit-font-smoothing: monospace;
   -moz-osx-font-smoothing: monospace;
-
+  padding: 90px 20px 0;
+  background-color: rgb(185, 153, 110);
 }
 
 code {

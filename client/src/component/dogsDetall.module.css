@@ -1,14 +1,10 @@
-.fondodeportada {
-    height: 120%;
-
-    width: 100%;
-    /* max-width: max-content; */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -100;
+.container{
+    height: 80px;
+        position: fixed;
+        width: 100%;
+        top: 10px;
+        left: 0;
 }
-
 .remover{
     height: auto;
         width: 300px;
@@ -23,29 +19,24 @@
         float: right;
         margin-right: 3%;
         color: rgba(44, 23, 10, 0.938);
+        
 }
 .remover:hover{
     width: 320px;
-        background-color: #fdeda6;
+        background-color: rgba(66, 39, 13, 0.863);
+            color: white;
+            transition: 1.5s;
 }
 .h1 {
-    /* list-style: none;
-    width: 800px;
-    height: 350px;
-    margin: 2rem auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 240px);
-    gap: 4re;
-    justify-content: center;
-    background-color: none; */
-  max-width: 500px;
-   /* margin-top: 150px; */
+     max-width: 500px;
     margin: auto;
     height: auto;
     height: 80%;
     font-size: 25px;
     
 }
+
+
 .entrada {
     overflow: hidden;
     font-family: monospace;
@@ -81,24 +72,20 @@
 
 }
 
-
+.info{
+    border: 3px solid wheat
+}
+.container{
+}
 
 .div2 {
-    /* text-align: center;
-    border: 3px solid rgb(28, 129, 124);
-    background-color: transparent;
-    border-radius: 10%;
-    width: 550px;
-    height: 770px;
-    font-size: 18px;
-    margin-top: 50px; */
- 
-
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
    margin-top: 100px;
+
 }
+
 
 .buttonVolver {
     height: auto;
@@ -117,7 +104,9 @@
 
 .buttonVolver:hover {
     width: 320px;
-        background-color: #fdeda6;
+        background-color: rgba(66, 39, 13, 0.863);
+        color:white;
+        transition: 1.5s;
 }
 .img{
     /* border-radius: 15px;
@@ -134,6 +123,7 @@ border-radius: 15px;
     margin: 15px;
     height: auto;
     height: 80%;
+    border: 2px solid black;
    
 }
 .title{

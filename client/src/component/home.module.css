@@ -2,15 +2,157 @@
     /* background-color: transparent;  */
     /* background-image:url("https: //thumbs.dreamstime.com/z/patr%C3%B3n-impecable-con-rayas-punteadas-e-impresiones-realistas-de-la-pata-perro-fondo-plano-m%C3%ADnimo-huella-mascota-y-huesos-color-176649109.jpg") */
 /* } */ 
-.fondodeportada {
+/* .fondodeportada {
    height: 330%;
 
     width: 100%;
-    /* max-width: max-content; */
+     max-width: max-content; 
     position: absolute;
     top: 0;
     left: 0;
     z-index: -100;
+} */
+
+.header{
+    background-color:rgba(100, 65, 20, 0.534);
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+
+    max-width: 992px;
+    margin: 0 auto;
+}
+.a{
+text-decoration: none;
+}
+.menu{
+    display: flex;
+    margin-right: 40px;
+    list-style: none;
+
+}
+.item{
+    font-size: 3.4em;
+    margin: 0 10px;
+    line-height: 80px;
+    text-decoration: uppercase;
+    width: max-content;
+}
+.toggle{
+    color:white;
+    background: none;
+    border: none;
+    font-size: 30px;
+    padding: 0 20px;
+    line-height: 60px;
+    display: none;
+}
+@media (max-width:983px) {
+.menu {
+    /* display: flex; */
+        margin-right: 40px;
+        list-style: none;
+        flex-direction:inherit;
+        /* align-items: center; */
+        /* margin-right: 20px; */
+        background-color: rgba(100, 65, 20, 0.534);
+        position: fixed;
+        left: 0;
+        top: 60px;
+        width: 100%;
+        padding: 20px auto;
+
+        height: calc(100% -60px);
+        overflow-y: auto;
+    }
+
+    .item {
+        line-height: 70px;
+    }
+
+    .entrada {
+        animation: none;
+    }
+
+    .buttonCreate {
+        width: 190px;
+        font-size: 18px;
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.938);
+        line-height: 16px;
+        border-radius: 18px;
+        border-color: #ffffff;
+        cursor: pointer;
+        transition: height 0.2s;
+        font-family: monospace;
+    }
+
+}
+@media (max-width:768px){
+    .header{
+        height: 60px;
+    }
+    .menu{
+        flex-direction: column;
+        align-items: center;
+        margin-right: 20px;
+        background-color:rgba(100, 65, 20, 0.534) ;
+        position: fixed;
+         left: 0;
+        top:60px;
+        width: 100%;
+        padding:20px 0;
+
+        height: calc(100% -60px);
+        overflow-y: auto;
+        left: 100%;
+        transition: left 0.3s;
+    }
+    .item{
+        line-height: 70px;
+    }
+    .entrada{
+        animation: none;
+    }
+    .buttonCreate{
+        width: 190px;
+            font-size: 5px;
+            background-color: transparent;
+            color: rgba(44, 23, 10, 0.938);
+            line-height: 16px;
+            border-radius: 18px;
+            border-color: #ffffff;
+            cursor: pointer;
+            transition: height 0.2s;
+            font-family: monospace;
+            height: 30px;
+    }
+    .toggle{
+        display: block;
+    }
+    .menu_visible{
+    left: 0;
+    flex-direction: column;
+        align-items: center;
+        margin-right: 20px;
+        background-color: rgba(100, 65, 20, 0.534);
+        position: fixed;
+        left: 0;
+        top: 60px;
+        width: 100%;
+        padding: 20px 0;
+    
+        height: calc(100% -60px);
+        overflow-y: auto;
+      
+        transition: left 0.3s;
+    }
 }
 .dogsCard{
     list-style: none;
@@ -22,7 +164,7 @@
     justify-content: center;
     
 }
-.header{
+/* .header{
 width: 100%;
 overflow: hidden;
 background:rgb(110, 110, 110);
@@ -30,22 +172,23 @@ position: fixed;
 height: 75px;
 margin:auto;
 top: 0;
-}
-.titulos{
+} */
+/* .titulos{
 margin: auto;
 display: table;
-}
+} */
 
  .entrada {
      overflow: hidden;
      font-family: monospace;
      white-space: nowrap;
-     font-size: 6.4em;
+     font-size: 38px;
      color:black;
-     width: 350px;
+     width: 150px;
      border-right: 2px solid rgba(207, 173, 121, 0.87);
-     animation: animacionIntro 4.8s steps(23, end) infinite,
+     animation: animacionIntro 4.8s steps(18, end) infinite,
          animacionBar 1s step-end infinite;
+         line-height: 80px;
  }
 
  @keyframes animacionIntro {
@@ -54,7 +197,7 @@ display: table;
      }
 
      100% {
-         width: 350px;
+         width: 180px;
      }
  }
 
@@ -72,25 +215,24 @@ display: table;
  }
 
 .buttonCreate {
-    height: auto;
+    
     width: 290px;
     font-size: 30px;
     background-color: transparent;
-    color: rgba(44, 23, 10, 0.938);
+    color: rgba(0, 0, 0, 0.938);
     line-height: 26px;
     border-radius: 28px;
     border-color: #ffffff;
     cursor: pointer;
-    transition: width 0.2s;
-    float: right;
-    margin-right: 3%;
+    transition: height 0.2s;
     font-family: monospace;
-    /* color: rgb(6, 6, 61); */
+   
 }
 
 .buttonCreate:hover {
-    width: 300px;
-    background-color: #fdeda6;
+    height: 40px;
+    transition: 2s;
+    background-color: rgba(66, 39, 13, 0.863);
 }
 .search {
     display: inline-block;
@@ -103,16 +245,7 @@ display: table;
     /* margin-top: 10px; */
     /* font-family: monospace; */
 }
-.create {
-    padding: 20px 20px;
-    /* line-height: 40px; */
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 0;
-    float: right;
-    /* font-family: monospace; */
 
-}
 
 
 .linkName{
@@ -120,7 +253,7 @@ display: table;
     color: black;
     font-size: 20px;
 }
-.navbar {
+/* .navbar {
     list-style: none;
     width: 80%;
     margin: 2rem auto;
@@ -129,7 +262,7 @@ display: table;
     align-items: center;
     margin-top: 90px;
 
-}
+} */
 
 .paginado {
     margin-bottom: 30px;
@@ -139,15 +272,35 @@ display: table;
         background-color: rgba(100, 65, 20, 0.534);
         border-radius: 15%;
         border-color: black;
-        font-size: 30px;
+        font-size: 25px;
     color: white;
     font-family: monospace;
 }
 .filtros:hover{
     background-color: rgba(66, 39, 13, 0.863);
+    transition: 0.5s;
 }
 .filtros:focus{
     color: #fdeda6;
+    transition: 0.5s;
 }
 
 
+@media (max-width:983px) {
+    .paginado{
+        margin-bottom: 20px;
+    }
+
+}
+@media (max-width:768px) {
+.filtros{
+    font-size: 20px;
+
+}
+.paginado{
+    margin-bottom: 10px;
+    overflow: hidden;
+        overflow-y: auto;
+}
+
+}

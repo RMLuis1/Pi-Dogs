@@ -31,3 +31,30 @@
     color: rgb(104, 68, 35);
         font-family: monospace;
 }
+@media (max-width:768px) {
+.searchImp {
+        height: 30px;
+        border-radius: 10px;
+        padding: 5px 50px 5px 10px;
+        font-size: 1.5rem;
+        width: 100%;
+        background-color: transparent;
+        font-family: monospace;
+        color: rgb(54, 40, 23);
+
+    }
+
+    .searchBot {
+        position: absolute;
+        right: 0;
+        top: 0;
+        cursor: pointer;
+        height: 100%;
+        border: none;
+        background: none;
+        color: rgb(104, 68, 35);
+        font-family: monospace;
+    }
+
+
+}

@@ -14,7 +14,7 @@ export const EDIT_DOG = "EDIT_DOG";
 
 export const getDog = () => {
   return (dispatch) => {
-    axios.get(`http://localhost:3001/dogs`).then((result) => {
+    axios.get(`/dogs`).then((result) => {
       return dispatch({
         type: GET_ALL_DOG,
         payload: result.data,
@@ -26,12 +26,13 @@ export const getDog = () => {
 export function getDogID(id) {
   try {
     return async function (dispatch) {
-      const result = await axios.get(`http://localhost:3001/dogs/${id}`);
+      const result = await axios.get(`/dogs/${id}`);
       return dispatch({
         type: GET_ALL_DOG_ID,
         payload: result.data,
       });
     };
+  // eslint-disable-next-line no-unreachable
   } catch (error) {
     console.log(error);
   }
@@ -40,7 +41,7 @@ export function getDogID(id) {
 export function getSearch(name) {
   return async function (dispatch) {
     return await axios
-      .get(`http://localhost:3001/dogs?name=${name}`)
+      .get(`/dogs?name=${name}`)
       .then((result) => {
         return dispatch({
           type: GET_ALL_DOGS_NAME,
@@ -60,7 +61,7 @@ export function getSearch(name) {
 
 // export function getTemperament() {
 //   return async function (dispatch) {
-//     const result = await axios.get("http://localhost:3001/temperament");
+//     const result = await axios.get(" /temperament");
 //     return dispatch({
 //       type: GET_TEMPERAMENT,
 //       payload: result.data,
@@ -71,7 +72,7 @@ export function getSearch(name) {
 export function getTemperament() {
   return function (dispatch) {
     axios
-      .get("http://localhost:3001/temperament")
+      .get("/temperament")
       .then((result) => {
         return dispatch({
           type: GET_TEMPERAMENT,
@@ -96,7 +97,7 @@ export const createDogs = ({
   temperament,
 }) => {
   return async (dispatch) => {
-    await axios.post("http://localhost:3001/dog", {
+    await axios.post("/dog", {
       name: name,
       altura: `${alturaMin} - ${alturaMax}`,
       peso: `${pesoMin} - ${pesoMax}`,
@@ -113,7 +114,7 @@ export const createDogs = ({
 export function getDogDeleted(id) {
   return function (dispatch) {
     axios
-      .delete(`http://localhost:3001/dogs/${id}`)
+      .delete(`/dogs/${id}`)
       .then((result) => {
         return dispatch({
           type: GET_DOG_DELETED,
@@ -129,7 +130,7 @@ export function getDogDeleted(id) {
 export function editDog(id, { name }) {
   return function (dispatch) {
     axios
-      .put(`http//localhost:3001/dogs/${id}`, {
+      .put(`/dogs/${id}`, {
         name: name,
       })
       .then((result) => {

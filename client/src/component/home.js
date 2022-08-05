@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import DogCard from "./dogCard";
@@ -37,13 +37,13 @@ export default function Home() {
     setPagina(pageNumber);
   };
 
-  // setTimeout(() => {
-  //   setIsLoading(false);
-  // }, 4000);
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 4000);
 
   useEffect(() => {
     dispatch(getDog());
-    setIsLoading(false)
+    // setIsLoading(false);
   }, [dispatch]);
 
   useEffect(() => {
@@ -95,17 +95,47 @@ export default function Home() {
     setOrden(`Ordenado ${e.target.value}`);
   }
   //--------------------------------------------------------------------------------------------
+  // const navToggle= document.getElementById("toggle")
+  // const navMenu= document.getElementById("menu")
+  // navToggle.addEventListener("click", ()=>{
+  // navMenu.classlistName.toggle("menu_visible")
+  // })
+  function cambioEstilo(){
+    //   const navMenu = document.getElementById("menu");
+    // navMenu.className= styles.menu_visible
+      const navMenu = document.getElementById("menu");
+     navMenu.className ? navMenu.className= styles.menu_visible :navMenu.className =styles.menu
+
+   
+      }
+  
 
   return (
     <div className={styles.container}>
-      <img
-        className={styles.fondodeportada}
-        src="https://thumbs.dreamstime.com/b/patr%C3%B3n-impecable-con-rayas-punteadas-e-impresiones-realistas-de-la-pata-perro-fondo-plano-m%C3%ADnimo-huella-mascota-y-huesos-color-176649109.jpg"
-        alt="Not found"
-      />
-
-      {/* <header className={styles.header}> */}
-      <div className={styles.titulos}>
+      <header className={styles.header}>
+        <nav className={styles.nav}>
+          <a className={styles.a} href="/home">
+            {" "}
+            <h1 className={styles.entrada}>
+              DOGS....<span>&#160; </span>{" "}
+            </h1>
+          </a>
+          <button onClick={()=>{cambioEstilo()}} className={styles.toggle}>
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </button>
+          <ul id="menu" className={styles.menu || styles.menu_visible} >
+            <li className={styles.item} key="search">
+              <Search />
+            </li>
+            <li className={styles.item} key="crear">
+              <a className={styles.a} href="/Create">
+                <button className={styles.buttonCreate}>
+                  Create dog breed
+                </button>{" "}
+              </a>
+            </li>
+          </ul>
+          {/* <div className={styles.titulos}>
         <h1 className={styles.entrada}>
           DOGS....<span>&#160; </span>{" "}
         </h1>
@@ -121,9 +151,9 @@ export default function Home() {
           {" "}
           <button className={styles.buttonCreate}>Create dog breed</button>{" "}
         </NavLink>
-      </div>
-      {/* </header> */}
-      {/* <div> */}
+      </div> */}
+        </nav>
+      </header>
       <div className={styles.navbar}>
         <select
           className={styles.filtros}

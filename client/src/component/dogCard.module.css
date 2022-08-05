@@ -1,6 +1,6 @@
 .dogCard {
     width: 100%;
-    height: 500px;
+    height: 400px;
     font-size: 13px;
     text-align: center;
     color: rgb(0, 0, 0);
@@ -20,6 +20,7 @@
     text-align: center;
     text-shadow: 10px 9px 5px rgb(97, 82, 63);
     font-size: 25px;
+    height: 30px;
 }
 
 .peso{
@@ -27,6 +28,7 @@
     color: rgb(255, 255, 255);
     justify-content: center;
     text-align: center;
+    height: 30px;
     /* text-shadow: 10px 9px 5px rgb(0, 0, 0); */
 }
 .temperament {
@@ -49,7 +51,7 @@
     border-radius: 15px;
     background-color: azure;
     box-shadow: 10px 9px 5px rgb(0, 0, 0);
-}
+    }
 .Image:hover {
     opacity: 1;
     -webkit-transform: scale(1.1);

@@ -75,25 +75,25 @@ export default function CreateDogs() {
       return alert("Todos los campos son obligatorios");
     }
     if (error.name) {
-      return alert("Name invalidos"), console.log(error);
+      return alert("Name invalidos");
     }
     if (error.alturaMin) {
-      return alert("Altura Minima invalidos"), console.log(error);
+      return alert("Altura Minima invalidos");
     }
     if (error.alturaMax) {
-      return alert("Altura Maxima invalidos"), console.log(error);
+      return alert("Altura Maxima invalidos");
     }
     if (error.pesoMin) {
-      return alert("Peso Minimo invalidos"), console.log(error);
+      return alert("Peso Minimo invalidos");
     }
     if (error.pesoMax) {
-      return alert("Peso Maximo invalidos"), console.log(error);
+      return alert("Peso Maximo invalidos");
     }
     if (error.añosMin) {
-      return alert("Años Minimo invalidos"), console.log(error);
+      return alert("Años Minimo invalidos");
     }
     if (error.añosMax) {
-      return alert("Años Maaximo invalidos"), console.log(error);
+      return alert("Años Maaximo invalidos");
     } else {
       dispatch(createDogs(input));
       alert("Dog breed created successfully!");
@@ -130,29 +130,33 @@ export default function CreateDogs() {
     } else if (!/^[A-Z]+$/i.test(input.name)) {
       error.name = "Name is invalid";
     } else if (!input.alturaMin) {
-      error.alturaMin = "Altura Minima is required";
-    } else if (input.alturaMin < 1 || input.alturaMin > 40) {
-      error.alturaMin = "Altura Minima is number 1 - 40";
+      error.alturaMin = "Minimum height is required";
+    } else if (input.alturaMin < 1 || input.alturaMin > 40 || !Number(input.alturaMin)) {
+      error.alturaMin = "Minimum height is number 1 - 40";
     } else if (!input.alturaMax) {
-      error.alturaMax = "Altura Maxima is required";
-    } else if (input.alturaMax < 41 || input.alturaMax > 100) {
-      error.alturaMax = "Altura Maxima is number 41 - 100";
+      error.alturaMax = "Maximum height is required";
+    } else if (
+      input.alturaMax < 41 ||
+      input.alturaMax > 100 ||
+      !Number(input.alturaMax)
+    ) {
+      error.alturaMax = "Maximum height is number 41 - 100";
     } else if (!input.pesoMin) {
-      error.pesoMin = "Peso Minimo is required";
-    } else if (input.pesoMin < 1 || input.pesoMin > 40) {
-      error.pesoMin = "Peso Minimo is number 1 - 40";
+      error.pesoMin = "Minimum weight is required";
+    } else if (input.pesoMin < 1 || input.pesoMin > 40 || !Number(input.pesoMin)) {
+      error.pesoMin = "Minimum weight is number 1 - 40";
     } else if (!input.pesoMax) {
-      error.pesoMax = "Peso Maximo is required";
-    } else if (input.pesoMax < 41 || input.pesoMax > 100) {
-      error.pesoMax = "Peso Maximo is number 41 - 100";
+      error.pesoMax = "Maximum weight is required";
+    } else if (input.pesoMax < 41 || input.pesoMax > 100 || !Number(input.pesoMax)) {
+      error.pesoMax = "Maximum weight is number 41 - 100";
     } else if (!input.añosMin) {
-      error.añosMin = "Años minimo de vida is required";
-    } else if (input.añosMin < 1 || input.añosMin > 15) {
-      error.añosMin = "Años minimo de vida is number 1 - 15";
+      error.añosMin = "Minimum years of life is required";
+    } else if (input.añosMin < 1 || input.añosMin > 15 || !Number(input.añosMin)) {
+      error.añosMin = "Minimum years of lifeis number 1 - 15";
     } else if (!input.añosMax) {
-      error.añosMax = "Años Maximo de vida is required";
-    } else if (input.añosMax < 16 || input.añosMax > 100) {
-      error.añosMax = "Años Maximo de vida is number 16 - 100";
+      error.añosMax = "Miximum years of life is required";
+    } else if (input.añosMax < 16 || input.añosMax > 100 || !Number(input.añosMax)) {
+      error.añosMax = "Miximum years of life is number 16 - 100";
     }
     console.log("ESTO ES ERROR!!!!", error);
     return error;
@@ -161,13 +165,8 @@ export default function CreateDogs() {
 
   return (
     <div>
-      <img
-        className={styles.fondodeportada}
-        src="https://i.pinimg.com/736x/20/79/97/207997fbb82ca8cff4b5d549a9164397.jpg"
-        alt="Not found"
-      />
-      <div className={styles.divM}>
-        <Link to="/home">
+       <div className={styles.divM}>
+        <Link  className={styles.aa} to="/home">
           <button className={styles.volver}>Go back</button>
         </Link>
         <br />
@@ -344,7 +343,7 @@ export default function CreateDogs() {
                   <li className={styles.input}>
                     {input.temperament.map(
                       (e) => (
-                        console.log("ESTO ES E:", e),
+                        console.log("ESTO ES E:", e)
                         (
                           <div key={e}>
                             <p>{e} </p>
