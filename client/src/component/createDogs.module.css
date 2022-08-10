@@ -122,13 +122,42 @@
     background: transparent;
     transition: all .25s ease;
 }
+.divList{
+    width: 100%;
+    max-height: 100%;
+}
+.inputTemp {
+    border: black;
+    
+    float: left;
+    display:grid;
+    grid-template-columns: repeat(auto-fill, 150px);
+    margin-right: 10px;
+    padding: 0 4px;
+    border-bottom: 1px solid #412610;
+    background: transparent;
+    transition: all .25s ease;
+        width: 70%;
+
+}
+.lista{
+    list-style: none;
+}
 
 
 .input:focus {
     outline: none;
     border-bottom: 1px solid #644c2d;
 }
-
+.buttonDelet{
+    background: none;
+    border: solid #644c2d;
+    border-radius: 50%;
+    position: relative;
+    left: auto;
+    top: 0px;
+    color: #332515;
+}
 .submit {
     position: absolute;
     border-radius: 30px;

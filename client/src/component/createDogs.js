@@ -401,18 +401,19 @@ export default function CreateDogs() {
                     );
                   })}
                 </select>
-                <ul>
-                  <li className={styles.input}>
+                <div className={styles.divLista}>
+                <ul className={styles.lista}>
+                  <li className={styles.inputTemp}>
                     {input.temperament.map((e) => (
                       <div key={e}>
-                        <p>{e} </p>
-                        <button value={e} onClick={(e) => handleDelete(e)}>
-                          x
+                        {e} 
+                        <button className={styles.buttonDelet} value={e} onClick={(e) => handleDelete(e)}>
+                          X
                         </button>{" "}
                       </div>
                     ))}{" "}
                   </li>
-                </ul>
+                </ul></div>
               </div>
             </div>
             <button className={styles.submit} type="submit">
